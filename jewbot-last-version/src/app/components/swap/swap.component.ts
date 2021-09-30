@@ -10,44 +10,46 @@ export class SwapComponent implements OnInit {
   tokenSelection: boolean = false;
   modal_transactions_settings: boolean = false;
   transactionSettingsForm!: FormGroup;
+  init_data = {
+    token: null,
+    amount: 0,
+    stop_loss: 0,
+    stop_loss_percent: 0,
+    slippage_buy: 0,
+    slippage_sell: 0,
+    buy_at: 0,
+    // sell_at: 0,
+    moonbag: 0,
+    is_kosher: false,
+    targets: [],
+    targets_percent: [],
+    auto_slippage: false,
+    auto_gas: false,
+    is_market_price: false,
+    is_market_price_sell: false,
+    is_stop_loss: false,
+    trailing: false,
+    defender: false,
+    kosher_mode: 'jew',
+    gas: 0,
+    gas_limit: 0,
+    fees: 0,
+    total_supply: 0,
+    price: 0,
+    pair: null,
+    MTA: 0,
+    MWA: 0,
+    skip: true,
+    tx_transfer_limit: 25,
+    strainer: [],
+  };
 
   constructor(public _FormBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    var init_data = JSON.parse(
-      localStorage.getItem('transactionSettings') || 'false'
-    ) || {
-      token: null,
-      amount: 0,
-      stop_loss: 0,
-      stop_loss_percent: 0,
-      slippage_buy: 0,
-      slippage_sell: 0,
-      buy_at: 0,
-      moonbag: 0,
-      is_kosher: false,
-      targets: [],
-      targets_percent: [],
-      auto_slippage: false,
-      auto_gas: false,
-      is_market_price: false,
-      is_market_price_sell: false,
-      is_stop_loss: false,
-      trailing: false,
-      defender: false,
-      kosher_mode: 'jew',
-      gas: 0,
-      gas_limit: 0,
-      fees: 0,
-      total_supply: 0,
-      price: 0,
-      pair: null,
-      MTA: 0,
-      MWA: 0,
-      skip: true,
-      tx_transfer_limit: 25,
-      strainer: [],
-    };
+    let init_data =
+      JSON.parse(localStorage.getItem('transactionSettings') || 'false') ||
+      this.init_data;
 
     for (var i in init_data) {
       init_data[i] = new FormControl(init_data[i]);
@@ -70,5 +72,8 @@ export class SwapComponent implements OnInit {
       JSON.stringify(this.transactionSettingsForm.value)
     );
     this.closeTransactionsSettingsModal();
+  }
+  toggleAutoSlippageTolerance() {
+    this.init_data.auto_slippage = !this.init_data.auto_slippage;
   }
 }

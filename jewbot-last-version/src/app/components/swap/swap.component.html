@@ -286,10 +286,7 @@
           <div class="input-group">
             <button data-toggle="tokens_modal">
               <div class="image">
-                <img
-                  class="icon"
-                  src="../../../../../../jewbot-2.1.0-beta/images/BNB.png"
-                />
+                <img class="icon" src="../../../assets/images/BNB.png" />
               </div>
 
               <div class="symbol">
@@ -315,7 +312,7 @@
                 <svg class="icon">
                   <use xlink:href="#icon_question_one" />
                 </svg>
-                <img class="icon hidden" src="images/HYPR.png" />
+                <img class="icon hidden" src="../../../assets/images/HYPR.png" />
               </div>
 
               <div class="symbol">
@@ -433,9 +430,9 @@
 
   <!-- MODAL Transactions settings -->
 
-  <div
+  <form
+    [formGroup]="transactionSettingsForm"
     *ngIf="modal_transactions_settings"
-    id="modal_transactions_settings"
     class="modal hidden"
   >
     <div class="backdrop" data-toggle="modal_transactions_settings"></div>
@@ -466,17 +463,30 @@
 
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" />
+            <input
+              class="form-control"
+              formControlName="slippage_buy"
+              placeholder="0"
+            />
             <div class="addon">%</div>
           </div>
 
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" />
+            <input
+              class="form-control"
+              formControlName="slippage_sell"
+              placeholder="0"
+            />
             <div class="addon">%</div>
           </div>
 
           <div class="input-group">
-            <button class="btn btn-toggle">Auto</button>
+            <button
+              (click)="toggleAutoSlippageTolerance()"
+              class="btn btn-toggle"
+            >
+              Auto
+            </button>
           </div>
         </div>
 
@@ -486,12 +496,16 @@
 
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" />
+            <input class="form-control" formControlName="gas" placeholder="0" />
             <div class="addon">GWei</div>
           </div>
 
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" />
+            <input
+              class="form-control"
+              formControlName="gas_limit"
+              placeholder="0"
+            />
             <div class="addon">MWei</div>
           </div>
 
@@ -506,7 +520,11 @@
 
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" />
+            <input
+              class="form-control"
+              formControlName="buy_at"
+              placeholder="0"
+            />
             <div class="addon">$</div>
           </div>
 
@@ -735,5 +753,5 @@
         </button>
       </div>
     </div>
-  </div>
+  </form>
 </body>
