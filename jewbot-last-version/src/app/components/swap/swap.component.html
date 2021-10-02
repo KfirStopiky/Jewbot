@@ -312,7 +312,10 @@
                 <svg class="icon">
                   <use xlink:href="#icon_question_one" />
                 </svg>
-                <img class="icon hidden" src="../../../assets/images/HYPR.png" />
+                <img
+                  class="icon hidden"
+                  src="../../../assets/images/HYPR.png"
+                />
               </div>
 
               <div class="symbol">
@@ -482,8 +485,12 @@
 
           <div class="input-group">
             <button
-              (click)="toggleAutoSlippageTolerance()"
-              class="btn btn-toggle"
+              (click)="toggleAutoSlippage()"
+              [ngClass]="
+                init_data.auto_slippage
+                  ? 'btn btn-toggle active'
+                  : 'btn btn-toggle'
+              "
             >
               Auto
             </button>
@@ -510,7 +517,14 @@
           </div>
 
           <div class="input-group">
-            <button class="btn btn-toggle">Auto</button>
+            <button
+              (click)="toggleAutoGas()"
+              [ngClass]="
+                init_data.auto_gas ? 'btn btn-toggle active' : 'btn btn-toggle '
+              "
+            >
+              Auto
+            </button>
           </div>
         </div>
 
@@ -529,7 +543,16 @@
           </div>
 
           <div class="input-group">
-            <button class="btn btn-toggle">Market Price</button>
+            <button
+              (click)="toggleMarketPriceBuy()"
+              [ngClass]="
+                init_data.is_market_price
+                  ? 'btn btn-toggle active'
+                  : 'btn btn-toggle '
+              "
+            >
+              Market Price
+            </button>
           </div>
         </div>
 
@@ -544,7 +567,16 @@
           </div>
 
           <div class="input-group">
-            <button class="btn btn-toggle">Market Price</button>
+            <button
+              (click)="toggleMarketPriceSell()"
+              [ngClass]="
+                init_data.is_market_price_sell
+                  ? 'btn btn-toggle active'
+                  : 'btn btn-toggle '
+              "
+            >
+              Market Price
+            </button>
           </div>
         </div>
 
@@ -612,7 +644,16 @@
           </div>
 
           <div class="input-group">
-            <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+            <button
+              (click)="toggleStopLoss()"
+              [ngClass]="
+                init_data.is_stop_loss
+                  ? 'btn btn-toggle btn-toggle-binary active'
+                  : 'btn btn-toggle btn-toggle-binary '
+              "
+            >
+              {{ init_data.is_stop_loss ? "ON" : "OFF" }}
+            </button>
           </div>
         </div>
 
@@ -628,7 +669,16 @@
         </div>
 
         <div class="input-group">
-          <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+          <button
+            (click)="toggleTrailing()"
+            [ngClass]="
+              init_data.trailing
+                ? 'btn btn-toggle btn-toggle-binary active'
+                : 'btn btn-toggle btn-toggle-binary'
+            "
+          >
+            {{ init_data.trailing ? "ON" : "OFF" }}
+          </button>
         </div>
 
         <!-- Skip receipts -->
@@ -643,7 +693,16 @@
         </div>
 
         <div class="input-group">
-          <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+          <button
+            (click)="toggleSkipReceipts()"
+            [ngClass]="
+              init_data.skip
+                ? 'btn btn-toggle btn-toggle-binary active'
+                : 'btn btn-toggle btn-toggle-binary'
+            "
+          >
+            {{ init_data.skip ? "ON" : "OFF" }}
+          </button>
         </div>
 
         <!-- Moon bag -->
@@ -657,7 +716,16 @@
           </div>
 
           <div class="input-group">
-            <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+            <button
+              (click)="toggleAutoMoonBag()"
+              [ngClass]="
+                init_data.auto_moon_bag
+                  ? 'btn btn-toggle btn-toggle-binary active'
+                  : 'btn btn-toggle btn-toggle-binary'
+              "
+            >
+              {{ init_data.auto_moon_bag ? "ON" : "OFF" }}
+            </button>
           </div>
         </div>
 
@@ -672,7 +740,16 @@
           </div>
 
           <div class="input-group">
-            <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+            <button
+              (click)="toggleAutoTimeOut()"
+              [ngClass]="
+                init_data.auto_time_out
+                  ? 'btn btn-toggle btn-toggle-binary active'
+                  : 'btn btn-toggle btn-toggle-binary'
+              "
+            >
+              {{ init_data.auto_time_out ? "ON" : "OFF" }}
+            </button>
           </div>
         </div>
 
@@ -706,7 +783,16 @@
         </div>
         <div class="multiple-input-groups">
           <div class="input-group w-100">
-            <button class="btn btn-toggle btn-toggle-binary">OFF</button>
+            <button
+              (click)="toggleCheckKosherness()"
+              [ngClass]="
+                init_data.is_kosher
+                  ? 'btn btn-toggle btn-toggle-binary active'
+                  : 'btn btn-toggle btn-toggle-binary'
+              "
+            >
+              {{ init_data.is_kosher ? "ON" : "OFF" }}
+            </button>
           </div>
 
           <div class="input-group">

@@ -20,16 +20,19 @@ export class SwapComponent implements OnInit {
     buy_at: 0,
     // sell_at: 0,
     moonbag: 0,
-    is_kosher: false,
     targets: [],
     targets_percent: [],
+    is_kosher: false,
     auto_slippage: false,
     auto_gas: false,
+    auto_moon_bag: false,
+    auto_time_out: false,
     is_market_price: false,
     is_market_price_sell: false,
     is_stop_loss: false,
     trailing: false,
     defender: false,
+    skip: true,
     kosher_mode: 'jew',
     gas: 0,
     gas_limit: 0,
@@ -39,7 +42,6 @@ export class SwapComponent implements OnInit {
     pair: null,
     MTA: 0,
     MWA: 0,
-    skip: true,
     tx_transfer_limit: 25,
     strainer: [],
   };
@@ -73,7 +75,34 @@ export class SwapComponent implements OnInit {
     );
     this.closeTransactionsSettingsModal();
   }
-  toggleAutoSlippageTolerance() {
+  toggleAutoSlippage() {
     this.init_data.auto_slippage = !this.init_data.auto_slippage;
+  }
+  toggleAutoGas() {
+    this.init_data.auto_gas = !this.init_data.auto_gas;
+  }
+  toggleMarketPriceBuy() {
+    this.init_data.is_market_price = !this.init_data.is_market_price;
+  }
+  toggleMarketPriceSell() {
+    this.init_data.is_market_price_sell = !this.init_data.is_market_price_sell;
+  }
+  toggleStopLoss() {
+    this.init_data.is_stop_loss = !this.init_data.is_stop_loss;
+  }
+  toggleTrailing() {
+    this.init_data.trailing = !this.init_data.trailing;
+  }
+  toggleSkipReceipts() {
+    this.init_data.skip = !this.init_data.skip;
+  }
+  toggleAutoMoonBag() {
+    this.init_data.auto_moon_bag = !this.init_data.auto_moon_bag;
+  }
+  toggleAutoTimeOut() {
+    this.init_data.auto_time_out = !this.init_data.auto_time_out;
+  }
+  toggleCheckKosherness() {
+    this.init_data.is_kosher = !this.init_data.is_kosher;
   }
 }
