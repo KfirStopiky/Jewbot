@@ -8,15 +8,12 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 })
 export class SwapComponent implements OnInit {
   tokenSelection: boolean = false;
-  modal_transactions_settings: boolean = false;
-  modal_help: boolean = false;
-  is_kosherness_btn_active: boolean = false;
   transactionSettingsForm!: FormGroup;
-  buttons_classes = {
-    slippage_status: false,
-    slippage_status: false,
+  modals = {
+    modal_transactions_settings: false,
+    modal_help: false,
+    modal_menu: false,
   };
-  status: boolean = false;
   init_data = {
     token: null,
     amount: 0,
@@ -30,6 +27,7 @@ export class SwapComponent implements OnInit {
     targets: [],
     targets_percent: [],
     is_kosher: false,
+    is_kosher_settings: false,
     auto_slippage: false,
     auto_gas: false,
     auto_moon_bag: false,
@@ -66,29 +64,20 @@ export class SwapComponent implements OnInit {
 
     this.transactionSettingsForm = this._FormBuilder.group(init_data);
   }
-  closeTokenSelection() {
-    this.tokenSelection != this.tokenSelection;
-  }
-  openTransactionsSettingsModal() {
-    this.modal_transactions_settings = true;
-  }
-  closeTransactionsSettingsModal() {
-    this.modal_transactions_settings = false;
-  }
   saveTransactionSettings() {
     localStorage.setItem(
       'transactionSettings',
       JSON.stringify(this.transactionSettingsForm.value)
     );
-    this.closeTransactionsSettingsModal();
+    this.modals.modal_transactions_settings = false;
   }
-  toggleHelpModal() {
-    this.modal_help = !this.modal_help;
+  toggleBtn(propertyName: string) {
+    this.init_data[propertyName] = !this.init_data[propertyName];
   }
-  toggleKoshernessBtn() {
-    this.is_kosherness_btn_active = !this.is_kosherness_btn_active;
+  toggleModal(propertyName: string) {
+    this.modals[propertyName] = !this.modals[propertyName];
   }
-  toggleBtn(prop) {
-    this.init_data[prop] = !this.init_data[prop];
+  removeTarget(target){
+    
   }
 }

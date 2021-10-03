@@ -266,6 +266,7 @@
 
         <div class="col">
           <button
+            (click)="toggleModal('modal_menu')"
             id="toggle_menu"
             class="btn btn-icon"
             data-toggle="modal_menu"
@@ -337,7 +338,7 @@
         <div class="buttons-group">
           <div class="icon-buttons">
             <button
-              (click)="openTransactionsSettingsModal()"
+              (click)="toggleModal('modal_transactions_settings')"
               class="btn btn-icon"
               data-toggle="modal_transactions_settings"
             >
@@ -436,7 +437,7 @@
   <form
     id="modal_transactions_settings"
     [formGroup]="transactionSettingsForm"
-    *ngIf="modal_transactions_settings"
+    *ngIf="modals.modal_transactions_settings"
     class="modal hidden"
   >
     <div class="backdrop" data-toggle="modal_transactions_settings"></div>
@@ -444,7 +445,7 @@
       <div class="header">
         <div class="title">Transaction Settings</div>
         <button
-          (click)="closeTransactionsSettingsModal()"
+          (click)="toggleModal('modal_transactions_settings')"
           class="btn-close"
           data-toggle="modal_transactions_settings"
         >
@@ -459,7 +460,7 @@
         <div class="label has-btn-help">
           Slipagge tolerance
           <button
-            (click)="toggleHelpModal()"
+            (click)="toggleModal('modal_help')"
             class="btn-help"
             data-toggle="modal_help"
           >
@@ -670,7 +671,7 @@
         <div class="label has-btn-help">
           Trailing stop loss
           <button
-            (click)="toggleBtn('is_stop_loss')"
+            (click)="toggleModal('modal_help')"
             class="btn-help"
             data-toggle="modal_help"
           >
@@ -698,7 +699,7 @@
         <div class="label has-btn-help">
           Skip receipts
           <button
-            (click)="toggleHelpModal()"
+            (click)="toggleModal('modal_help')"
             class="btn-help"
             data-toggle="modal_help"
           >
@@ -774,7 +775,7 @@
         <div class="label has-btn-help">
           Transfer limit
           <button
-            (click)="toggleHelpModal()"
+            (click)="toggleModal('modal_help')"
             class="btn-help"
             data-toggle="modal_help"
           >
@@ -796,7 +797,7 @@
         <div class="label has-btn-help">
           Check kosherness
           <button
-            (click)="toggleHelpModal()"
+            (click)="toggleModal('modal_help')"
             class="btn-help"
             data-toggle="modal_help"
           >
@@ -821,7 +822,7 @@
 
           <div class="input-group">
             <button
-              (click)="toggleKoshernessBtn()"
+              (click)="toggleBtn('is_kosher_settings')"
               id="toggle_kosherness_settings"
               class="btn btn-icon"
             >
@@ -832,10 +833,7 @@
           </div>
         </div>
 
-        <div
-          id="kosherness_settings"
-          [ngClass]="is_kosherness_btn_active ? '' : 'hidden'"
-        >
+        <div *ngIf="init_data.is_kosher_settings" id="kosherness_settings">
           <div class="input-group">
             <textarea
               id="kosherness_exceptions"
@@ -874,16 +872,38 @@
 
   <!-- MODAL Help -->
 
-  <div *ngIf="modal_help" id="modal_help" class="modal hidden">
+  <div *ngIf="modals.modal_help" id="modal_help" class="modal hidden">
     <div class="backdrop" data-toggle="modal_help"></div>
 
     <div class="container">
       <div class="header">
         <div class="title">Help</div>
         <button
-          (click)="toggleHelpModal()"
+          (click)="toggleModal('modal_help')"
           class="btn-close"
           data-toggle="modal_help"
+        >
+          <svg class="icon">
+            <use xlink:href="#icon_x_circle" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="body">Content</div>
+    </div>
+  </div>
+  <!-- MODAL Menu -->
+
+  <div *ngIf="modals.modal_menu" id="modal_menu" class="modal hidden">
+    <div class="backdrop" data-toggle="modal_menu"></div>
+
+    <div class="container">
+      <div class="header">
+        <div class="title">Menu</div>
+        <button
+          (click)="toggleModal('modal_menu')"
+          class="btn-close"
+          data-toggle="modal_menu"
         >
           <svg class="icon">
             <use xlink:href="#icon_x_circle" />
