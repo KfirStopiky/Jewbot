@@ -9,7 +9,14 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 export class SwapComponent implements OnInit {
   tokenSelection: boolean = false;
   modal_transactions_settings: boolean = false;
+  modal_help: boolean = false;
+  is_kosherness_btn_active: boolean = false;
   transactionSettingsForm!: FormGroup;
+  buttons_classes = {
+    slippage_status: false,
+    slippage_status: false,
+  };
+  status: boolean = false;
   init_data = {
     token: null,
     amount: 0,
@@ -75,34 +82,13 @@ export class SwapComponent implements OnInit {
     );
     this.closeTransactionsSettingsModal();
   }
-  toggleAutoSlippage() {
-    this.init_data.auto_slippage = !this.init_data.auto_slippage;
+  toggleHelpModal() {
+    this.modal_help = !this.modal_help;
   }
-  toggleAutoGas() {
-    this.init_data.auto_gas = !this.init_data.auto_gas;
+  toggleKoshernessBtn() {
+    this.is_kosherness_btn_active = !this.is_kosherness_btn_active;
   }
-  toggleMarketPriceBuy() {
-    this.init_data.is_market_price = !this.init_data.is_market_price;
-  }
-  toggleMarketPriceSell() {
-    this.init_data.is_market_price_sell = !this.init_data.is_market_price_sell;
-  }
-  toggleStopLoss() {
-    this.init_data.is_stop_loss = !this.init_data.is_stop_loss;
-  }
-  toggleTrailing() {
-    this.init_data.trailing = !this.init_data.trailing;
-  }
-  toggleSkipReceipts() {
-    this.init_data.skip = !this.init_data.skip;
-  }
-  toggleAutoMoonBag() {
-    this.init_data.auto_moon_bag = !this.init_data.auto_moon_bag;
-  }
-  toggleAutoTimeOut() {
-    this.init_data.auto_time_out = !this.init_data.auto_time_out;
-  }
-  toggleCheckKosherness() {
-    this.init_data.is_kosher = !this.init_data.is_kosher;
+  toggleBtn(prop) {
+    this.init_data[prop] = !this.init_data[prop];
   }
 }

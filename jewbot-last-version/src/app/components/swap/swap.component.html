@@ -434,6 +434,7 @@
   <!-- MODAL Transactions settings -->
 
   <form
+    id="modal_transactions_settings"
     [formGroup]="transactionSettingsForm"
     *ngIf="modal_transactions_settings"
     class="modal hidden"
@@ -457,7 +458,11 @@
 
         <div class="label has-btn-help">
           Slipagge tolerance
-          <button class="btn-help" data-toggle="modal_help">
+          <button
+            (click)="toggleHelpModal()"
+            class="btn-help"
+            data-toggle="modal_help"
+          >
             <svg class="icon">
               <use xlink:href="#icon_question_two" />
             </svg>
@@ -485,9 +490,10 @@
 
           <div class="input-group">
             <button
-              (click)="toggleAutoSlippage()"
+              #toggleButton
+              (click)="toggleBtn('auto_slippage')"
               [ngClass]="
-                init_data.auto_slippage
+                this.init_data.auto_slippage
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle'
               "
@@ -518,9 +524,11 @@
 
           <div class="input-group">
             <button
-              (click)="toggleAutoGas()"
+              (click)="toggleBtn('auto_gas')"
               [ngClass]="
-                init_data.auto_gas ? 'btn btn-toggle active' : 'btn btn-toggle '
+                this.init_data.auto_gas
+                  ? 'btn btn-toggle active'
+                  : 'btn btn-toggle '
               "
             >
               Auto
@@ -544,7 +552,7 @@
 
           <div class="input-group">
             <button
-              (click)="toggleMarketPriceBuy()"
+              (click)="toggleBtn('is_market_price')"
               [ngClass]="
                 init_data.is_market_price
                   ? 'btn btn-toggle active'
@@ -568,7 +576,7 @@
 
           <div class="input-group">
             <button
-              (click)="toggleMarketPriceSell()"
+              (click)="toggleBtn('is_market_price_sell')"
               [ngClass]="
                 init_data.is_market_price_sell
                   ? 'btn btn-toggle active'
@@ -645,7 +653,7 @@
 
           <div class="input-group">
             <button
-              (click)="toggleStopLoss()"
+              (click)="toggleBtn('is_stop_loss')"
               [ngClass]="
                 init_data.is_stop_loss
                   ? 'btn btn-toggle btn-toggle-binary active'
@@ -661,7 +669,11 @@
 
         <div class="label has-btn-help">
           Trailing stop loss
-          <button class="btn-help" data-toggle="modal_help">
+          <button
+            (click)="toggleBtn('is_stop_loss')"
+            class="btn-help"
+            data-toggle="modal_help"
+          >
             <svg class="icon">
               <use xlink:href="#icon_question_two" />
             </svg>
@@ -670,7 +682,7 @@
 
         <div class="input-group">
           <button
-            (click)="toggleTrailing()"
+            (click)="toggleBtn('trailing')"
             [ngClass]="
               init_data.trailing
                 ? 'btn btn-toggle btn-toggle-binary active'
@@ -685,7 +697,11 @@
 
         <div class="label has-btn-help">
           Skip receipts
-          <button class="btn-help" data-toggle="modal_help">
+          <button
+            (click)="toggleHelpModal()"
+            class="btn-help"
+            data-toggle="modal_help"
+          >
             <svg class="icon">
               <use xlink:href="#icon_question_two" />
             </svg>
@@ -694,7 +710,7 @@
 
         <div class="input-group">
           <button
-            (click)="toggleSkipReceipts()"
+            (click)="toggleBtn('skip')"
             [ngClass]="
               init_data.skip
                 ? 'btn btn-toggle btn-toggle-binary active'
@@ -717,7 +733,7 @@
 
           <div class="input-group">
             <button
-              (click)="toggleAutoMoonBag()"
+              (click)="toggleBtn('auto_moon_bag')"
               [ngClass]="
                 init_data.auto_moon_bag
                   ? 'btn btn-toggle btn-toggle-binary active'
@@ -741,7 +757,7 @@
 
           <div class="input-group">
             <button
-              (click)="toggleAutoTimeOut()"
+              (click)="toggleBtn('auto_time_out')"
               [ngClass]="
                 init_data.auto_time_out
                   ? 'btn btn-toggle btn-toggle-binary active'
@@ -757,7 +773,11 @@
 
         <div class="label has-btn-help">
           Transfer limit
-          <button class="btn-help" data-toggle="modal_help">
+          <button
+            (click)="toggleHelpModal()"
+            class="btn-help"
+            data-toggle="modal_help"
+          >
             <svg class="icon">
               <use xlink:href="#icon_question_two" />
             </svg>
@@ -775,7 +795,11 @@
 
         <div class="label has-btn-help">
           Check kosherness
-          <button class="btn-help" data-toggle="modal_help">
+          <button
+            (click)="toggleHelpModal()"
+            class="btn-help"
+            data-toggle="modal_help"
+          >
             <svg class="icon">
               <use xlink:href="#icon_question_two" />
             </svg>
@@ -784,7 +808,7 @@
         <div class="multiple-input-groups">
           <div class="input-group w-100">
             <button
-              (click)="toggleCheckKosherness()"
+              (click)="toggleBtn('is_kosher')"
               [ngClass]="
                 init_data.is_kosher
                   ? 'btn btn-toggle btn-toggle-binary active'
@@ -796,7 +820,11 @@
           </div>
 
           <div class="input-group">
-            <button id="toggle_kosherness_settings" class="btn btn-icon">
+            <button
+              (click)="toggleKoshernessBtn()"
+              id="toggle_kosherness_settings"
+              class="btn btn-icon"
+            >
               <svg class="icon">
                 <use xlink:href="#icon_sliders" />
               </svg>
@@ -804,7 +832,10 @@
           </div>
         </div>
 
-        <div id="kosherness_settings" class="hidden">
+        <div
+          id="kosherness_settings"
+          [ngClass]="is_kosherness_btn_active ? '' : 'hidden'"
+        >
           <div class="input-group">
             <textarea
               id="kosherness_exceptions"
@@ -840,4 +871,27 @@
       </div>
     </div>
   </form>
+
+  <!-- MODAL Help -->
+
+  <div *ngIf="modal_help" id="modal_help" class="modal hidden">
+    <div class="backdrop" data-toggle="modal_help"></div>
+
+    <div class="container">
+      <div class="header">
+        <div class="title">Help</div>
+        <button
+          (click)="toggleHelpModal()"
+          class="btn-close"
+          data-toggle="modal_help"
+        >
+          <svg class="icon">
+            <use xlink:href="#icon_x_circle" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="body">Content</div>
+    </div>
+  </div>
 </body>
