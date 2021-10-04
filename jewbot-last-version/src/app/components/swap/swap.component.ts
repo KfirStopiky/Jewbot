@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-swap',
@@ -14,7 +15,7 @@ export class SwapComponent implements OnInit {
     modal_menu: false,
     modal_transactions: false,
     modal_transactions_completed: false,
-    modal_token_selection:false
+    modal_token_selection: false,
   };
   init_data = {
     token: null,
@@ -55,7 +56,7 @@ export class SwapComponent implements OnInit {
     strainer: [],
   };
 
-  constructor(public _FormBuilder: FormBuilder) {}
+  constructor(public _FormBuilder: FormBuilder, public _Router: Router) {}
 
   ngOnInit(): void {
     let init_data =

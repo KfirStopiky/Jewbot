@@ -234,16 +234,27 @@
       />
     </symbol>
   </svg>
-
   <header>
     <div class="container">
       <div class="row">
         <div class="col">
-          <button id="view_swap" class="btn text-bold active">SWAP</button>
+          <button
+            (click)="_Router.navigateByUrl('swap')"
+            id="view_swap"
+            class="btn text-bold active"
+          >
+            SWAP
+          </button>
         </div>
 
         <div class="col">
-          <button id="view_scan" class="btn text-bold">SCAN</button>
+          <button
+            (click)="_Router.navigateByUrl('scan')"
+            id="view_scan"
+            class="btn text-bold"
+          >
+            SCAN
+          </button>
         </div>
 
         <div class="col">
