@@ -308,7 +308,11 @@
 
         <div class="token-group">
           <div class="input-group">
-            <button id="select_token" data-toggle="modal_token_select">
+            <button
+              (click)="toggleModal('modal_token_selection')"
+              id="select_token"
+              data-toggle="modal_token_select"
+            >
               <div class="image">
                 <svg class="icon">
                   <use xlink:href="#icon_question_one" />
@@ -348,6 +352,7 @@
             </button>
 
             <button
+              (click)="toggleModal('modal_transactions')"
               class="btn btn-icon"
               data-toggle="modal_transactions_active"
             >
@@ -357,6 +362,7 @@
             </button>
 
             <button
+              (click)="toggleModal('modal_transactions_completed')"
               class="btn btn-icon"
               data-toggle="modal_transactions_completed"
             >
@@ -396,13 +402,17 @@
 
   <!-- MODAL Token select -->
 
-  <div *ngIf="tokenSelection" id="modal_token_select" class="modal hidden">
+  <div
+    *ngIf="modals.modal_token_selection"
+    id="modal_token_select"
+    class="modal hidden"
+  >
     <div class="backdrop" data-toggle="modal_token_select"></div>
     <div class="container">
       <div class="header">
         <div class="title">Select a token</div>
         <button
-          (click)="closeTokenSelection()"
+          (click)="toggleModal('modal_token_selection')"
           class="btn-close"
           data-toggle="modal_token_select"
         >
@@ -571,7 +581,11 @@
 
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" />
+            <input
+              formControlName="sell_at"
+              class="form-control"
+              placeholder="0"
+            />
             <div class="addon">$</div>
           </div>
 
@@ -643,12 +657,20 @@
 
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" />
+            <input
+              formControlName="stop_loss"
+              class="form-control"
+              placeholder="0"
+            />
             <div class="addon">X</div>
           </div>
 
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" />
+            <input
+              formControlName="stop_loss_percent"
+              class="form-control"
+              placeholder="0"
+            />
             <div class="addon">%</div>
           </div>
 
@@ -728,7 +750,11 @@
 
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" />
+            <input
+              formControlName="moonbag"
+              class="form-control"
+              placeholder="0"
+            />
             <div class="addon">$</div>
           </div>
 
@@ -752,7 +778,11 @@
 
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" />
+            <input
+              formControlName="time_out"
+              class="form-control"
+              placeholder="0"
+            />
             <div class="addon">$</div>
           </div>
 
@@ -787,7 +817,12 @@
 
         <div class="multiple-input-groups">
           <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" value="10" />
+            <input
+              formControlName="transfet_limit"
+              class="form-control"
+              placeholder="0"
+              value="10"
+            />
             <div class="addon">Times</div>
           </div>
         </div>
@@ -912,6 +947,307 @@
       </div>
 
       <div class="body">Content</div>
+    </div>
+  </div>
+
+  <!-- MODAL Transactions active -->
+
+  <div
+    *ngIf="modals.modal_transactions"
+    id="modal_transactions_active"
+    class="modal transaction-modal hidden"
+  >
+    <div class="backdrop" data-toggle="modal_transactions_active"></div>
+
+    <div class="container">
+      <div class="header">
+        <div class="title">Active Transactions</div>
+        <button
+          (click)="toggleModal('modal_transactions')"
+          class="btn-close"
+          data-toggle="modal_transactions_active"
+        >
+          <svg class="icon">
+            <use xlink:href="#icon_x_circle" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="body">
+        <div class="transaction">
+          <div class="data">
+            <div class="pair">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_question_one" />
+                </svg>
+                <div>Pair:</div>
+              </div>
+              <div>LEET/BNB</div>
+            </div>
+
+            <div class="date">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_clock" />
+                </svg>
+                <div>Date:</div>
+              </div>
+              <div>2021-12-01 13:37:00</div>
+            </div>
+
+            <div class="amount">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_plus" />
+                </svg>
+                <div>Amount:</div>
+              </div>
+              <div>10000</div>
+            </div>
+
+            <div class="price">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_coin" />
+                </svg>
+                <div>Price:</div>
+              </div>
+              <div>0.00001337</div>
+            </div>
+
+            <div class="fee">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_coin" />
+                </svg>
+                <div>Fee:</div>
+              </div>
+              <div>0.1337 BNB</div>
+            </div>
+          </div>
+
+          <button class="btn">Sell</button>
+        </div>
+
+        <div class="transaction">
+          <div class="data">
+            <div class="pair">
+              <div>
+                <svg class="icon hidden">
+                  <use xlink:href="#icon_question_one" />
+                </svg>
+                <img class="icon" src="../../../assets/images/HYPR.png" />
+                <div>Pair:</div>
+              </div>
+              <div>HIGH/BNB</div>
+            </div>
+
+            <div class="date">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_clock" />
+                </svg>
+                <div>Date:</div>
+              </div>
+              <div>2021-04-20 16:20:00</div>
+            </div>
+
+            <div class="amount">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_plus" />
+                </svg>
+                <div>Amount:</div>
+              </div>
+              <div>10000</div>
+            </div>
+
+            <div class="price">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_coin" />
+                </svg>
+                <div>Price:</div>
+              </div>
+              <div>0.0000420</div>
+            </div>
+
+            <div class="fee">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_coin" />
+                </svg>
+                <div>Fee:</div>
+              </div>
+              <div>0.420 BNB</div>
+            </div>
+          </div>
+
+          <button class="btn">Sell</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL Transactions completed -->
+
+  <!-- MODAL Transactions completed -->
+
+  <div
+    *ngIf="modals.modal_transactions_completed"
+    id="modal_transactions_completed"
+    class="modal transaction-modal hidden"
+  >
+    <div class="backdrop" data-toggle="modal_transactions_completed"></div>
+    <div class="container">
+      <div class="header">
+        <div class="title">Completed Transactions</div>
+        <button
+          (click)="toggleModal('modal_transactions_completed')"
+          class="btn-close"
+          data-toggle="modal_transactions_completed"
+        >
+          <svg class="icon">
+            <use xlink:href="#icon_x_circle" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="body">
+        <div class="transaction">
+          <div class="data">
+            <div class="pair">
+              <div>
+                <svg class="icon hidden">
+                  <use xlink:href="#icon_question_one" />
+                </svg>
+                <img class="icon" src="../../../assets/images/HYPR.png" />
+                <div>Pair:</div>
+              </div>
+              <div>HIGH/BNB</div>
+            </div>
+
+            <div class="date">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_clock" />
+                </svg>
+                <div>Date:</div>
+              </div>
+              <div>2021-04-20 16:20:00</div>
+            </div>
+
+            <div class="amount">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_plus" />
+                </svg>
+                <div>Amount:</div>
+              </div>
+              <div>10000</div>
+            </div>
+
+            <div class="price">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_coin" />
+                </svg>
+                <div>Price:</div>
+              </div>
+              <div>0.0000420</div>
+            </div>
+
+            <div class="fee">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_coin" />
+                </svg>
+                <div>Fee:</div>
+              </div>
+              <div>0.420 BNB</div>
+            </div>
+
+            <div class="total">
+              <div>
+                <svg class="icon icon-positive">
+                  <use xlink:href="#icon_positive" />
+                </svg>
+                <div>Total:</div>
+              </div>
+              <div>420 BNB</div>
+            </div>
+          </div>
+
+          <button class="btn">Share</button>
+        </div>
+
+        <div class="transaction">
+          <div class="data">
+            <div class="pair">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_question_one" />
+                </svg>
+                <div>Pair:</div>
+              </div>
+              <div>LEET/BNB</div>
+            </div>
+
+            <div class="date">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_clock" />
+                </svg>
+                <div>Date:</div>
+              </div>
+              <div>2021-12-01 13:37:00</div>
+            </div>
+
+            <div class="amount">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_plus" />
+                </svg>
+                <div>Amount:</div>
+              </div>
+              <div>10000</div>
+            </div>
+
+            <div class="price">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_coin" />
+                </svg>
+                <div>Price:</div>
+              </div>
+              <div>0.00001337</div>
+            </div>
+
+            <div class="fee">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="#icon_coin" />
+                </svg>
+                <div>Fee:</div>
+              </div>
+              <div>0.1337 BNB</div>
+            </div>
+
+            <div class="total">
+              <div>
+                <svg class="icon icon-negative">
+                  <use xlink:href="#icon_negative" />
+                </svg>
+                <div>Total:</div>
+              </div>
+              <div>1337 BNB</div>
+            </div>
+          </div>
+
+          <button class="btn">Share</button>
+        </div>
+      </div>
     </div>
   </div>
 </body>

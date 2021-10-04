@@ -7,12 +7,14 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./swap.component.css'],
 })
 export class SwapComponent implements OnInit {
-  tokenSelection: boolean = false;
   transactionSettingsForm!: FormGroup;
   modals = {
     modal_transactions_settings: false,
     modal_help: false,
     modal_menu: false,
+    modal_transactions: false,
+    modal_transactions_completed: false,
+    modal_token_selection:false
   };
   init_data = {
     token: null,
@@ -22,8 +24,9 @@ export class SwapComponent implements OnInit {
     slippage_buy: 0,
     slippage_sell: 0,
     buy_at: 0,
-    // sell_at: 0,
+    sell_at: 0,
     moonbag: 0,
+    time_out: 0,
     targets: [],
     targets_percent: [],
     is_kosher: false,
@@ -47,6 +50,7 @@ export class SwapComponent implements OnInit {
     pair: null,
     MTA: 0,
     MWA: 0,
+    transfet_limit: 10,
     tx_transfer_limit: 25,
     strainer: [],
   };
@@ -76,8 +80,6 @@ export class SwapComponent implements OnInit {
   }
   toggleModal(propertyName: string) {
     this.modals[propertyName] = !this.modals[propertyName];
-  }
-  removeTarget(target){
-    
+    console.log('modal');
   }
 }
