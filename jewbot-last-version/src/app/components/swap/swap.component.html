@@ -457,7 +457,7 @@
 
   <form
     id="modal_transactions_settings"
-    [formGroup]="transactionSettingsForm"
+    [formGroup]="trnsactionSettingsForm"
     *ngIf="modals.modal_transactions_settings"
     class="modal hidden"
   >
@@ -512,12 +512,11 @@
 
           <div class="input-group">
             <button
-              #toggleButton
               (click)="toggleBtn('auto_slippage')"
               [ngClass]="
-                this.init_data.auto_slippage
+                trnsactionSettingsForm.auto_slippage
                   ? 'btn btn-toggle active'
-                  : 'btn btn-toggle'
+                  : 'btn btn-toggle '
               "
             >
               Auto
@@ -548,7 +547,7 @@
             <button
               (click)="toggleBtn('auto_gas')"
               [ngClass]="
-                this.init_data.auto_gas
+                trnsactionSettingsForm.auto_gas
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
@@ -576,7 +575,7 @@
             <button
               (click)="toggleBtn('is_market_price')"
               [ngClass]="
-                init_data.is_market_price
+                trnsactionSettingsForm.is_market_price
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
@@ -604,7 +603,7 @@
             <button
               (click)="toggleBtn('is_market_price_sell')"
               [ngClass]="
-                init_data.is_market_price_sell
+                trnsactionSettingsForm.is_market_price_sell
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
@@ -618,27 +617,7 @@
 
         <div class="label">Targets</div>
 
-        <div class="multiple-input-groups">
-          <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" value="2" />
-            <div class="addon">X</div>
-          </div>
-
-          <div class="input-group has-addon">
-            <input class="form-control" placeholder="0" value="50" />
-            <div class="addon">%</div>
-          </div>
-
-          <div class="input-group">
-            <button class="btn btn-icon btn-remove-target">
-              <svg class="icon">
-                <use xlink:href="#icon_trash" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="multiple-input-groups">
+        <div *ngFor="let newTarget of targets" class="multiple-input-groups">
           <div class="input-group has-addon">
             <input class="form-control" placeholder="0" value="4" />
             <div class="addon">X</div>
@@ -650,7 +629,10 @@
           </div>
 
           <div class="input-group">
-            <button class="btn btn-icon btn-remove-target">
+            <button
+              (click)="removeTarget($event)"
+              class="btn btn-icon btn-remove-target"
+            >
               <svg class="icon">
                 <use xlink:href="#icon_trash" />
               </svg>
@@ -659,7 +641,9 @@
         </div>
 
         <div class="input-group">
-          <button id="add_target" class="btn">Add Target</button>
+          <button (click)="addTarget()" id="add_target" class="btn">
+            Add Target
+          </button>
         </div>
 
         <!-- Stop loss -->
@@ -689,12 +673,12 @@
             <button
               (click)="toggleBtn('is_stop_loss')"
               [ngClass]="
-                init_data.is_stop_loss
+                trnsactionSettingsForm.is_stop_loss
                   ? 'btn btn-toggle btn-toggle-binary active'
                   : 'btn btn-toggle btn-toggle-binary '
               "
             >
-              {{ init_data.is_stop_loss ? "ON" : "OFF" }}
+              {{ trnsactionSettingsForm.is_stop_loss ? "ON" : "OFF" }}
             </button>
           </div>
         </div>
@@ -718,12 +702,12 @@
           <button
             (click)="toggleBtn('trailing')"
             [ngClass]="
-              init_data.trailing
+              trnsactionSettingsForm.trailing
                 ? 'btn btn-toggle btn-toggle-binary active'
                 : 'btn btn-toggle btn-toggle-binary'
             "
           >
-            {{ init_data.trailing ? "ON" : "OFF" }}
+            {{ trnsactionSettingsForm.trailing ? "ON" : "OFF" }}
           </button>
         </div>
 
@@ -746,12 +730,12 @@
           <button
             (click)="toggleBtn('skip')"
             [ngClass]="
-              init_data.skip
+              trnsactionSettingsForm.skip
                 ? 'btn btn-toggle btn-toggle-binary active'
                 : 'btn btn-toggle btn-toggle-binary'
             "
           >
-            {{ init_data.skip ? "ON" : "OFF" }}
+            {{ trnsactionSettingsForm.skip ? "ON" : "OFF" }}
           </button>
         </div>
 
@@ -773,12 +757,12 @@
             <button
               (click)="toggleBtn('auto_moon_bag')"
               [ngClass]="
-                init_data.auto_moon_bag
+                trnsactionSettingsForm.auto_moon_bag
                   ? 'btn btn-toggle btn-toggle-binary active'
                   : 'btn btn-toggle btn-toggle-binary'
               "
             >
-              {{ init_data.auto_moon_bag ? "ON" : "OFF" }}
+              {{ trnsactionSettingsForm.auto_moon_bag ? "ON" : "OFF" }}
             </button>
           </div>
         </div>
@@ -801,12 +785,12 @@
             <button
               (click)="toggleBtn('auto_time_out')"
               [ngClass]="
-                init_data.auto_time_out
+                trnsactionSettingsForm.auto_time_out
                   ? 'btn btn-toggle btn-toggle-binary active'
                   : 'btn btn-toggle btn-toggle-binary'
               "
             >
-              {{ init_data.auto_time_out ? "ON" : "OFF" }}
+              {{ trnsactionSettingsForm.auto_time_out ? "ON" : "OFF" }}
             </button>
           </div>
         </div>
@@ -857,12 +841,12 @@
             <button
               (click)="toggleBtn('is_kosher')"
               [ngClass]="
-                init_data.is_kosher
+                trnsactionSettingsForm.is_kosher
                   ? 'btn btn-toggle btn-toggle-binary active'
                   : 'btn btn-toggle btn-toggle-binary'
               "
             >
-              {{ init_data.is_kosher ? "ON" : "OFF" }}
+              {{ trnsactionSettingsForm.is_kosher ? "ON" : "OFF" }}
             </button>
           </div>
 
@@ -879,7 +863,10 @@
           </div>
         </div>
 
-        <div *ngIf="init_data.is_kosher_settings" id="kosherness_settings">
+        <div
+          *ngIf="trnsactionSettingsForm.is_kosher_settings"
+          id="kosherness_settings"
+        >
           <div class="input-group">
             <textarea
               id="kosherness_exceptions"
@@ -907,6 +894,7 @@
       <div class="footer">
         <button
           (click)="saveTransactionSettings()"
+          type="submit"
           class="btn text-white text-bold"
           data-toggle="modal_transactions_settings"
         >
