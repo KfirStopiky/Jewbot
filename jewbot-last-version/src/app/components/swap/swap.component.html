@@ -514,7 +514,7 @@
             <button
               (click)="toggleBtn('auto_slippage')"
               [ngClass]="
-                trnsactionSettingsForm.auto_slippage
+                trnsactionSettingsForm.controls.auto_slippage.value
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
@@ -547,7 +547,7 @@
             <button
               (click)="toggleBtn('auto_gas')"
               [ngClass]="
-                trnsactionSettingsForm.auto_gas
+                trnsactionSettingsForm.controls.auto_gas.value
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
@@ -575,7 +575,7 @@
             <button
               (click)="toggleBtn('is_market_price')"
               [ngClass]="
-                trnsactionSettingsForm.is_market_price
+                trnsactionSettingsForm.controls.is_market_price.value
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
@@ -603,7 +603,7 @@
             <button
               (click)="toggleBtn('is_market_price_sell')"
               [ngClass]="
-                trnsactionSettingsForm.is_market_price_sell
+                trnsactionSettingsForm.controls.is_market_price_sell.value
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
@@ -673,12 +673,16 @@
             <button
               (click)="toggleBtn('is_stop_loss')"
               [ngClass]="
-                trnsactionSettingsForm.is_stop_loss
+                trnsactionSettingsForm.controls.is_stop_loss.value
                   ? 'btn btn-toggle btn-toggle-binary active'
                   : 'btn btn-toggle btn-toggle-binary '
               "
             >
-              {{ trnsactionSettingsForm.is_stop_loss ? "ON" : "OFF" }}
+              {{
+                trnsactionSettingsForm.controls.is_stop_loss.value
+                  ? "ON"
+                  : "OFF"
+              }}
             </button>
           </div>
         </div>
@@ -702,12 +706,12 @@
           <button
             (click)="toggleBtn('trailing')"
             [ngClass]="
-              trnsactionSettingsForm.trailing
+              trnsactionSettingsForm.controls.trailing.value
                 ? 'btn btn-toggle btn-toggle-binary active'
                 : 'btn btn-toggle btn-toggle-binary'
             "
           >
-            {{ trnsactionSettingsForm.trailing ? "ON" : "OFF" }}
+            {{ trnsactionSettingsForm.controls.trailing.value ? "ON" : "OFF" }}
           </button>
         </div>
 
@@ -730,12 +734,12 @@
           <button
             (click)="toggleBtn('skip')"
             [ngClass]="
-              trnsactionSettingsForm.skip
+              trnsactionSettingsForm.controls.skip.value
                 ? 'btn btn-toggle btn-toggle-binary active'
                 : 'btn btn-toggle btn-toggle-binary'
             "
           >
-            {{ trnsactionSettingsForm.skip ? "ON" : "OFF" }}
+            {{ trnsactionSettingsForm.controls.skip.value ? "ON" : "OFF" }}
           </button>
         </div>
 
@@ -757,12 +761,16 @@
             <button
               (click)="toggleBtn('auto_moon_bag')"
               [ngClass]="
-                trnsactionSettingsForm.auto_moon_bag
+                trnsactionSettingsForm.controls.auto_moon_bag.value
                   ? 'btn btn-toggle btn-toggle-binary active'
                   : 'btn btn-toggle btn-toggle-binary'
               "
             >
-              {{ trnsactionSettingsForm.auto_moon_bag ? "ON" : "OFF" }}
+              {{
+                trnsactionSettingsForm.controls.auto_moon_bag.value
+                  ? "ON"
+                  : "OFF"
+              }}
             </button>
           </div>
         </div>
@@ -785,12 +793,16 @@
             <button
               (click)="toggleBtn('auto_time_out')"
               [ngClass]="
-                trnsactionSettingsForm.auto_time_out
+                trnsactionSettingsForm.controls.auto_time_out.value
                   ? 'btn btn-toggle btn-toggle-binary active'
                   : 'btn btn-toggle btn-toggle-binary'
               "
             >
-              {{ trnsactionSettingsForm.auto_time_out ? "ON" : "OFF" }}
+              {{
+                trnsactionSettingsForm.controls.auto_time_out.value
+                  ? "ON"
+                  : "OFF"
+              }}
             </button>
           </div>
         </div>
@@ -841,12 +853,14 @@
             <button
               (click)="toggleBtn('is_kosher')"
               [ngClass]="
-                trnsactionSettingsForm.is_kosher
+                trnsactionSettingsForm.controls.is_kosher.value
                   ? 'btn btn-toggle btn-toggle-binary active'
                   : 'btn btn-toggle btn-toggle-binary'
               "
             >
-              {{ trnsactionSettingsForm.is_kosher ? "ON" : "OFF" }}
+              {{
+                trnsactionSettingsForm.controls.is_kosher.value ? "ON" : "OFF"
+              }}
             </button>
           </div>
 
@@ -864,7 +878,7 @@
         </div>
 
         <div
-          *ngIf="trnsactionSettingsForm.is_kosher_settings"
+          *ngIf="trnsactionSettingsForm.controls.is_kosher_settings.value"
           id="kosherness_settings"
         >
           <div class="input-group">
