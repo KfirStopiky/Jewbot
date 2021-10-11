@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SwapService } from 'src/app/shared/swap/swap.service';
 
 @Component({
   selector: 'app-swap',
@@ -8,19 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./swap.component.css'],
 })
 export class SwapComponent implements OnInit {
-  object = {};
-  trnsactionSettingsForm: FormGroup;
-  modals = {
-    modal_transactions_settings: false,
-    modal_help: false,
-    modal_menu: false,
-    modal_transactions: false,
-    modal_transactions_completed: false,
-    modal_token_selection: false,
-  };
-  targets = [0];
+  init_data_object = {};
+  // modals = {
+  //   modal_transactions_settings: false,
+  //   modal_help: false,
+  //   modal_menu: false,
+  //   modal_transactions: false,
+  //   modal_transactions_completed: false,
+  //   modal_token_selection: false,
+  // };
+  // targets = [0];
 
-  constructor(public _FormBuilder: FormBuilder, public _Router: Router) {}
+  constructor(public _Router: Router, public _SwapService: SwapService) {}
 
   ngOnInit(): void {
     var init_data = JSON.parse(
@@ -65,33 +65,34 @@ export class SwapComponent implements OnInit {
     };
 
     for (var i in init_data) {
-      this.object[i] = new FormControl(init_data[i]);
+      this.init_data_object[i] = new FormControl(init_data[i]);
     }
 
-    this.trnsactionSettingsForm = this._FormBuilder.group(this.object);
+    this._SwapService.trnsactionSettingsForm =
+      this._SwapService._FormBuilder.group(this.init_data_object);
   }
-  saveTransactionSettings() {
-    localStorage.setItem(
-      'transactionSettings',
-      JSON.stringify(this.trnsactionSettingsForm.value)
-    );
+  // saveTransactionSettings() {
+  //   localStorage.setItem(
+  //     'transactionSettings',
+  //     JSON.stringify(this.trnsactionSettingsForm.value)
+  //   );
 
-    this.modals.modal_transactions_settings = false;
-  }
-  toggleBtn(propertyName: any) {
-    this.trnsactionSettingsForm.patchValue({
-      [propertyName]: !this.trnsactionSettingsForm.controls[propertyName].value,
-    });
-  }
-  toggleModal(propertyName: string) {
-    this.modals[propertyName] = !this.modals[propertyName];
-  }
-  addTarget() {
-    this.targets.push(this.targets.length);
-    console.log(this.targets);
-  }
-  removeTarget(e: any) {
-    // let index = this.targets.findIndex(e => e.target.)
-    this.targets.pop();
-  }
+  //   this.modals.modal_transactions_settings = false;
+  // }
+  // toggleBtn(propertyName: any) {
+  //   this.trnsactionSettingsForm.patchValue({
+  //     [propertyName]: !this.trnsactionSettingsForm.controls[propertyName].value,
+  //   });
+  // }
+  // toggleModal(propertyName: string) {
+  //   this.modals[propertyName] = !this.modals[propertyName];
+  // }
+  // addTarget() {
+  //   this.targets.push(this.targets.length);
+  //   console.log(this.targets);
+  // }
+  // removeTarget(i: number) {
+  //   console.log(i);
+  //   this.targets.splice(i, 1);
+  // }
 }

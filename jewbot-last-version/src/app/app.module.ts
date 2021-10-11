@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { SwapComponent } from './components/swap/swap.component';
 import { ScanComponent } from './components/scan/scan.component';
 import { HeaderComponent } from './components/header/header.component';
+import { TransactionSettingsComponent } from './components/transaction-settings/transaction-settings.component';
 
 @NgModule({
-  declarations: [AppComponent, SwapComponent, ScanComponent, HeaderComponent],
+  declarations: [AppComponent, SwapComponent, ScanComponent, HeaderComponent, TransactionSettingsComponent],
   imports: [BrowserModule, AppRoutingModule,ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

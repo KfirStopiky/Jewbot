@@ -1,0 +1,477 @@
+<form
+  [formGroup]="_SwapService.trnsactionSettingsForm"
+  id="modal_transactions_settings"
+  class="modal hidden"
+>
+  <div class="backdrop" data-toggle="modal_transactions_settings"></div>
+  <div class="container">
+    <div class="header">
+      <div class="title">Transaction Settings</div>
+      <button
+        (click)="_SwapService.toggleModal('modal_transactions_settings')"
+        class="btn-close"
+        data-toggle="modal_transactions_settings"
+      >
+        <svg class="icon">
+          <use xlink:href="#icon_x_circle" />
+        </svg>
+      </button>
+    </div>
+    <div class="body">
+      <!-- Slipagge tolerance -->
+
+      <div class="label has-btn-help">
+        Slipagge tolerance
+        <button
+          (click)="_SwapService.toggleModal('modal_help')"
+          class="btn-help"
+          data-toggle="modal_help"
+        >
+          <svg class="icon">
+            <use xlink:href="#icon_question_two" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="multiple-input-groups">
+        <div class="input-group has-addon">
+          <input
+            class="form-control"
+            formControlName="slippage_buy"
+            placeholder="0"
+          />
+          <div class="addon">%</div>
+        </div>
+
+        <div class="input-group has-addon">
+          <input
+            class="form-control"
+            formControlName="slippage_sell"
+            placeholder="0"
+          />
+          <div class="addon">%</div>
+        </div>
+
+        <div class="input-group">
+          <button
+            (click)="_SwapService.toggleBtn('auto_slippage')"
+            [ngClass]="
+              _SwapService.trnsactionSettingsForm.controls.auto_slippage.value
+                ? 'btn btn-toggle active'
+                : 'btn btn-toggle '
+            "
+          >
+            Auto
+          </button>
+        </div>
+      </div>
+
+      <!-- Gas and limit -->
+
+      <div class="label">Gas and limit</div>
+
+      <div class="multiple-input-groups">
+        <div class="input-group has-addon">
+          <input class="form-control" formControlName="gas" placeholder="0" />
+          <div class="addon">GWei</div>
+        </div>
+
+        <div class="input-group has-addon">
+          <input
+            class="form-control"
+            formControlName="gas_limit"
+            placeholder="0"
+          />
+          <div class="addon">MWei</div>
+        </div>
+
+        <div class="input-group">
+          <button
+            (click)="_SwapService.toggleBtn('auto_gas')"
+            [ngClass]="
+              _SwapService.trnsactionSettingsForm.controls.auto_gas.value
+                ? 'btn btn-toggle active'
+                : 'btn btn-toggle '
+            "
+          >
+            Auto
+          </button>
+        </div>
+      </div>
+
+      <!-- Buy at -->
+
+      <div class="label">Buy at</div>
+
+      <div class="multiple-input-groups">
+        <div class="input-group has-addon">
+          <input
+            class="form-control"
+            formControlName="buy_at"
+            placeholder="0"
+          />
+          <div class="addon">$</div>
+        </div>
+
+        <div class="input-group">
+          <button
+            (click)="_SwapService.toggleBtn('is_market_price')"
+            [ngClass]="
+              _SwapService.trnsactionSettingsForm.controls.is_market_price.value
+                ? 'btn btn-toggle active'
+                : 'btn btn-toggle '
+            "
+          >
+            Market Price
+          </button>
+        </div>
+      </div>
+
+      <!-- Sell at -->
+
+      <div class="label">Sell at</div>
+
+      <div class="multiple-input-groups">
+        <div class="input-group has-addon">
+          <input
+            formControlName="sell_at"
+            class="form-control"
+            placeholder="0"
+          />
+          <div class="addon">$</div>
+        </div>
+
+        <div class="input-group">
+          <button
+            (click)="_SwapService.toggleBtn('is_market_price_sell')"
+            [ngClass]="
+              _SwapService.trnsactionSettingsForm.controls.is_market_price_sell
+                .value
+                ? 'btn btn-toggle active'
+                : 'btn btn-toggle '
+            "
+          >
+            Market Price
+          </button>
+        </div>
+      </div>
+
+      <!-- Targets -->
+
+      <div class="label">Targets</div>
+
+      <div
+        *ngFor="let newTarget of _SwapService.targets; let i = index"
+        class="multiple-input-groups"
+      >
+        <div class="input-group has-addon">
+          <input class="form-control" placeholder="0" value="4" />
+          <div class="addon">X</div>
+        </div>
+
+        <div class="input-group has-addon is-invalid">
+          <input class="form-control" placeholder="0" />
+          <div class="addon">%</div>
+        </div>
+
+        <div class="input-group">
+          <button
+            (click)="_SwapService.removeTarget(i)"
+            class="btn btn-icon btn-remove-target"
+          >
+            <svg class="icon">
+              <use xlink:href="#icon_trash" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <button (click)="_SwapService.addTarget()" id="add_target" class="btn">
+          Add Target
+        </button>
+      </div>
+
+      <!-- Stop loss -->
+
+      <div class="label">Stop loss</div>
+
+      <div class="multiple-input-groups">
+        <div class="input-group has-addon">
+          <input
+            formControlName="stop_loss"
+            class="form-control"
+            placeholder="0"
+          />
+          <div class="addon">X</div>
+        </div>
+
+        <div class="input-group has-addon">
+          <input
+            formControlName="stop_loss_percent"
+            class="form-control"
+            placeholder="0"
+          />
+          <div class="addon">%</div>
+        </div>
+
+        <div class="input-group">
+          <button
+            (click)="_SwapService.toggleBtn('is_stop_loss')"
+            [ngClass]="
+              _SwapService.trnsactionSettingsForm.controls.is_stop_loss.value
+                ? 'btn btn-toggle btn-toggle-binary active'
+                : 'btn btn-toggle btn-toggle-binary '
+            "
+          >
+            {{
+              _SwapService.trnsactionSettingsForm.controls.is_stop_loss.value
+                ? "ON"
+                : "OFF"
+            }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Trailing stop loss -->
+
+      <div class="label has-btn-help">
+        Trailing stop loss
+        <button
+          (click)="_SwapService.toggleModal('modal_help')"
+          class="btn-help"
+          data-toggle="modal_help"
+        >
+          <svg class="icon">
+            <use xlink:href="#icon_question_two" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="input-group">
+        <button
+          (click)="_SwapService.toggleBtn('trailing')"
+          [ngClass]="
+            _SwapService.trnsactionSettingsForm.controls.trailing.value
+              ? 'btn btn-toggle btn-toggle-binary active'
+              : 'btn btn-toggle btn-toggle-binary'
+          "
+        >
+          {{
+            _SwapService.trnsactionSettingsForm.controls.trailing.value
+              ? "ON"
+              : "OFF"
+          }}
+        </button>
+      </div>
+
+      <!-- Skip receipts -->
+
+      <div class="label has-btn-help">
+        Skip receipts
+        <button
+          (click)="_SwapService.toggleModal('modal_help')"
+          class="btn-help"
+          data-toggle="modal_help"
+        >
+          <svg class="icon">
+            <use xlink:href="#icon_question_two" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="input-group">
+        <button
+          (click)="_SwapService.toggleBtn('skip')"
+          [ngClass]="
+            _SwapService.trnsactionSettingsForm.controls.skip.value
+              ? 'btn btn-toggle btn-toggle-binary active'
+              : 'btn btn-toggle btn-toggle-binary'
+          "
+        >
+          {{
+            _SwapService.trnsactionSettingsForm.controls.skip.value
+              ? "ON"
+              : "OFF"
+          }}
+        </button>
+      </div>
+
+      <!-- Moon bag -->
+
+      <div class="label">Moon bag</div>
+
+      <div class="multiple-input-groups">
+        <div class="input-group has-addon">
+          <input
+            formControlName="moonbag"
+            class="form-control"
+            placeholder="0"
+          />
+          <div class="addon">$</div>
+        </div>
+
+        <div class="input-group">
+          <button
+            (click)="_SwapService.toggleBtn('auto_moon_bag')"
+            [ngClass]="
+              _SwapService.trnsactionSettingsForm.controls.auto_moon_bag.value
+                ? 'btn btn-toggle btn-toggle-binary active'
+                : 'btn btn-toggle btn-toggle-binary'
+            "
+          >
+            {{
+              _SwapService.trnsactionSettingsForm.controls.auto_moon_bag.value
+                ? "ON"
+                : "OFF"
+            }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Timeout -->
+
+      <div class="label">Timeout</div>
+
+      <div class="multiple-input-groups">
+        <div class="input-group has-addon">
+          <input
+            formControlName="time_out"
+            class="form-control"
+            placeholder="0"
+          />
+          <div class="addon">$</div>
+        </div>
+
+        <div class="input-group">
+          <button
+            (click)="_SwapService.toggleBtn('auto_time_out')"
+            [ngClass]="
+              _SwapService.trnsactionSettingsForm.controls.auto_time_out.value
+                ? 'btn btn-toggle btn-toggle-binary active'
+                : 'btn btn-toggle btn-toggle-binary'
+            "
+          >
+            {{
+              _SwapService.trnsactionSettingsForm.controls.auto_time_out.value
+                ? "ON"
+                : "OFF"
+            }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Transfer limit -->
+
+      <div class="label has-btn-help">
+        Transfer limit
+        <button
+          (click)="_SwapService.toggleModal('modal_help')"
+          class="btn-help"
+          data-toggle="modal_help"
+        >
+          <svg class="icon">
+            <use xlink:href="#icon_question_two" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="multiple-input-groups">
+        <div class="input-group has-addon">
+          <input
+            formControlName="transfet_limit"
+            class="form-control"
+            placeholder="0"
+            value="10"
+          />
+          <div class="addon">Times</div>
+        </div>
+      </div>
+
+      <!-- Check kosherness -->
+
+      <div class="label has-btn-help">
+        Check kosherness
+        <button
+          (click)="_SwapService.toggleModal('modal_help')"
+          class="btn-help"
+          data-toggle="modal_help"
+        >
+          <svg class="icon">
+            <use xlink:href="#icon_question_two" />
+          </svg>
+        </button>
+      </div>
+      <div class="multiple-input-groups">
+        <div class="input-group w-100">
+          <button
+            (click)="_SwapService.toggleBtn('is_kosher')"
+            [ngClass]="
+              _SwapService.trnsactionSettingsForm.controls.is_kosher.value
+                ? 'btn btn-toggle btn-toggle-binary active'
+                : 'btn btn-toggle btn-toggle-binary'
+            "
+          >
+            {{
+              _SwapService.trnsactionSettingsForm.controls.is_kosher.value
+                ? "ON"
+                : "OFF"
+            }}
+          </button>
+        </div>
+
+        <div class="input-group">
+          <button
+            (click)="_SwapService.toggleBtn('is_kosher_settings')"
+            id="toggle_kosherness_settings"
+            class="btn btn-icon"
+          >
+            <svg class="icon">
+              <use xlink:href="#icon_sliders" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div
+        *ngIf="
+          _SwapService.trnsactionSettingsForm.controls.is_kosher_settings.value
+        "
+        id="kosherness_settings"
+      >
+        <div class="input-group">
+          <textarea
+            id="kosherness_exceptions"
+            class="form-control hidden"
+            placeholder="Add each of your exceptions on a new line"
+            rows="8"
+          ></textarea>
+        </div>
+
+        <div class="multiple-input-groups multi-switch">
+          <div class="input-group w-100">
+            <button class="btn btn-toggle active">Jewbot</button>
+          </div>
+
+          <div class="input-group w-100">
+            <button class="btn btn-toggle">Mixed</button>
+          </div>
+
+          <div class="input-group w-100">
+            <button class="btn btn-toggle">Custom</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <button
+        (click)="_SwapService.saveTransactionSettings()"
+        type="submit"
+        class="btn text-white text-bold"
+        data-toggle="modal_transactions_settings"
+      >
+        Save Settings
+      </button>
+    </div>
+  </div>
+</form>
