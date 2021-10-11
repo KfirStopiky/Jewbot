@@ -10,15 +10,6 @@ import { SwapService } from 'src/app/shared/swap/swap.service';
 })
 export class SwapComponent implements OnInit {
   init_data_object = {};
-  // modals = {
-  //   modal_transactions_settings: false,
-  //   modal_help: false,
-  //   modal_menu: false,
-  //   modal_transactions: false,
-  //   modal_transactions_completed: false,
-  //   modal_token_selection: false,
-  // };
-  // targets = [0];
 
   constructor(public _Router: Router, public _SwapService: SwapService) {}
 
@@ -71,28 +62,4 @@ export class SwapComponent implements OnInit {
     this._SwapService.trnsactionSettingsForm =
       this._SwapService._FormBuilder.group(this.init_data_object);
   }
-  // saveTransactionSettings() {
-  //   localStorage.setItem(
-  //     'transactionSettings',
-  //     JSON.stringify(this.trnsactionSettingsForm.value)
-  //   );
-
-  //   this.modals.modal_transactions_settings = false;
-  // }
-  // toggleBtn(propertyName: any) {
-  //   this.trnsactionSettingsForm.patchValue({
-  //     [propertyName]: !this.trnsactionSettingsForm.controls[propertyName].value,
-  //   });
-  // }
-  // toggleModal(propertyName: string) {
-  //   this.modals[propertyName] = !this.modals[propertyName];
-  // }
-  // addTarget() {
-  //   this.targets.push(this.targets.length);
-  //   console.log(this.targets);
-  // }
-  // removeTarget(i: number) {
-  //   console.log(i);
-  //   this.targets.splice(i, 1);
-  // }
 }
