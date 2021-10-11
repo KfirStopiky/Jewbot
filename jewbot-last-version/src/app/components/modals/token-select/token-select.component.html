@@ -1,0 +1,30 @@
+<div class="backdrop" data-toggle="modal_token_select"></div>
+<div class="container">
+  <div class="header">
+    <div class="title">Select a token</div>
+    <button
+      (click)="_SwapService.toggleModal('modal_token_selection')"
+      class="btn-close"
+      data-toggle="modal_token_select"
+    >
+      <svg class="icon">
+        <use xlink:href="#icon_x_circle" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="body">
+    <div class="input-group">
+      <input
+        class="form-control text-left"
+        placeholder="Paste address&hellip;"
+      />
+    </div>
+  </div>
+
+  <div class="footer">
+    <button class="btn text-white text-bold" data-toggle="modal_token_select">
+      Import
+    </button>
+  </div>
+</div>

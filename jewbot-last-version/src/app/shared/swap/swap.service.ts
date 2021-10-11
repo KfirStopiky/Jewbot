@@ -16,13 +16,14 @@ export class SwapService {
     modal_transactions: false,
     modal_transactions_completed: false,
     modal_token_selection: false,
+    modal_transaction_active: false,
   };
   targets = [0];
 
   constructor(public _FormBuilder: FormBuilder, public _Router: Router) {}
 
   toggleModal(propertyName: string) {
-
+    console.log('modal clicked')
     this.modals[propertyName] = !this.modals[propertyName];
   }
   saveTransactionSettings() {

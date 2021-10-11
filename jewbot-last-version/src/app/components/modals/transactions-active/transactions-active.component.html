@@ -1,0 +1,130 @@
+<div class="backdrop" data-toggle="modal_transactions_active"></div>
+<div class="container">
+  <div class="header">
+    <div class="title">Active Transactions</div>
+    <button
+      (click)="_SwapService.toggleModal('modal_transactions_completed')"
+      class="btn-close"
+      data-toggle="modal_transactions_active"
+    >
+      <svg class="icon">
+        <use xlink:href="#icon_x_circle" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="body">
+    <div class="transaction">
+      <div class="data">
+        <div class="pair">
+          <div>
+            <svg class="icon">
+              <use xlink:href="#icon_question_one" />
+            </svg>
+            <div>Pair:</div>
+          </div>
+          <div>LEET/BNB</div>
+        </div>
+
+        <div class="date">
+          <div>
+            <svg class="icon">
+              <use xlink:href="#icon_clock" />
+            </svg>
+            <div>Date:</div>
+          </div>
+          <div>2021-12-01 13:37:00</div>
+        </div>
+
+        <div class="amount">
+          <div>
+            <svg class="icon">
+              <use xlink:href="#icon_plus" />
+            </svg>
+            <div>Amount:</div>
+          </div>
+          <div>10000</div>
+        </div>
+
+        <div class="price">
+          <div>
+            <svg class="icon">
+              <use xlink:href="#icon_coin" />
+            </svg>
+            <div>Price:</div>
+          </div>
+          <div>0.00001337</div>
+        </div>
+
+        <div class="fee">
+          <div>
+            <svg class="icon">
+              <use xlink:href="#icon_coin" />
+            </svg>
+            <div>Fee:</div>
+          </div>
+          <div>0.1337 BNB</div>
+        </div>
+      </div>
+
+      <button class="btn">Sell</button>
+    </div>
+
+    <div class="transaction">
+      <div class="data">
+        <div class="pair">
+          <div>
+            <svg class="icon hidden">
+              <use xlink:href="#icon_question_one" />
+            </svg>
+            <img class="icon" src="../../../assets/images/HYPR.png" />
+            <div>Pair:</div>
+          </div>
+          <div>HIGH/BNB</div>
+        </div>
+
+        <div class="date">
+          <div>
+            <svg class="icon">
+              <use xlink:href="#icon_clock" />
+            </svg>
+            <div>Date:</div>
+          </div>
+          <div>2021-04-20 16:20:00</div>
+        </div>
+
+        <div class="amount">
+          <div>
+            <svg class="icon">
+              <use xlink:href="#icon_plus" />
+            </svg>
+            <div>Amount:</div>
+          </div>
+          <div>10000</div>
+        </div>
+
+        <div class="price">
+          <div>
+            <svg class="icon">
+              <use xlink:href="#icon_coin" />
+            </svg>
+            <div>Price:</div>
+          </div>
+          <div>0.0000420</div>
+        </div>
+
+        <div class="fee">
+          <div>
+            <svg class="icon">
+              <use xlink:href="#icon_coin" />
+            </svg>
+            <div>Fee:</div>
+          </div>
+          <div>0.420 BNB</div>
+        </div>
+      </div>
+
+      <button class="btn">Sell</button>
+    </div>
+  </div>
+</div>
