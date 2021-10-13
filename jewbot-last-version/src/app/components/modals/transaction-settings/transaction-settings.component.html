@@ -174,7 +174,11 @@
         </div>
 
         <div class="input-group has-addon is-invalid">
-          <input [formControlName]="i+1" class="form-control" placeholder="0" />
+          <input
+            [formControlName]="i + 1"
+            class="form-control"
+            placeholder="0"
+          />
           <div class="addon">%</div>
         </div>
 
@@ -191,11 +195,7 @@
       </div>
 
       <div class="input-group">
-        <button
-          (click)="_SwapService.addTarget()"
-          id="add_target"
-          class="btn"
-        >
+        <button (click)="_SwapService.addTarget()" id="add_target" class="btn">
           Add Target
         </button>
       </div>
@@ -447,7 +447,13 @@
         "
         id="kosherness_settings"
       >
-        <div class="input-group">
+        <div
+          *ngIf="
+            _SwapService.kosherness_settings === 'mixed' ||
+            _SwapService.kosherness_settings === 'custom'
+          "
+          class="input-group"
+        >
           <textarea
             id="kosherness_exceptions"
             class="form-control hidden"
@@ -458,15 +464,42 @@
 
         <div class="multiple-input-groups multi-switch">
           <div class="input-group w-100">
-            <button class="btn btn-toggle active">Jewbot</button>
+            <button
+              (click)="_SwapService.changeKoshernessSettings('jewbot')"
+              [ngClass]="
+                _SwapService.kosherness_settings === 'jewbot'
+                  ? 'btn btn-toggle active'
+                  : 'btn btn-toggle '
+              "
+            >
+              Jewbot
+            </button>
           </div>
 
           <div class="input-group w-100">
-            <button class="btn btn-toggle">Mixed</button>
+            <button
+              (click)="_SwapService.changeKoshernessSettings('mixed')"
+              [ngClass]="
+                _SwapService.kosherness_settings === 'mixed'
+                  ? 'btn btn-toggle active'
+                  : 'btn btn-toggle '
+              "
+            >
+              Mixed
+            </button>
           </div>
 
           <div class="input-group w-100">
-            <button class="btn btn-toggle">Custom</button>
+            <button
+              (click)="_SwapService.changeKoshernessSettings('custom')"
+              [ngClass]="
+                _SwapService.kosherness_settings === 'custom'
+                  ? 'btn btn-toggle active'
+                  : 'btn btn-toggle '
+              "
+            >
+              Custom
+            </button>
           </div>
         </div>
       </div>

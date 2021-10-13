@@ -9,6 +9,7 @@ export class SwapService {
   object: any;
   init_data: any;
   trnsactionSettingsForm: FormGroup;
+  kosherness_settings: string = 'jewbot';
   modals = {
     modal_transactions_settings: false,
     modal_help: false,
@@ -19,7 +20,9 @@ export class SwapService {
     modal_transaction_active: false,
   };
   number_of_targets: number = 0;
-
+  getTargets() {
+    return this.trnsactionSettingsForm.get('targets') as FormArray;
+  }
   constructor(public _FormBuilder: FormBuilder, public _Router: Router) {}
 
   toggleModal(propertyName: string) {
@@ -40,10 +43,9 @@ export class SwapService {
     this.trnsactionSettingsForm.patchValue({
       [propertyName]: !this.trnsactionSettingsForm.controls[propertyName].value,
     });
+    console.log(this.trnsactionSettingsForm.controls.targets);
   }
-  getTargets() {
-    return this.trnsactionSettingsForm.get('targets') as FormArray;
-  }
+
   addTarget() {
     (this.trnsactionSettingsForm.controls.targets as FormArray).push(
       this._FormBuilder.control('')
@@ -60,4 +62,7 @@ export class SwapService {
   // removeTarget(i: number) {
   //   this.number_of_targets.splice(i, 1);
   // }
+  changeKoshernessSettings(name: string) {
+    this.kosherness_settings = name;
+  }
 }

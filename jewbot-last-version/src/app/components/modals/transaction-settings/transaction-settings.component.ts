@@ -14,6 +14,6 @@ export class TransactionSettingsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this._SwapService.trnsactionSettingsForm.controls.number_of_targets);
+    console.log(this._SwapService.trnsactionSettingsForm.controls.number_of_targets.value);
   }
 }
