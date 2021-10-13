@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SwapService } from 'src/app/shared/swap/swap.service';
 
 @Component({
@@ -8,12 +7,7 @@ import { SwapService } from 'src/app/shared/swap/swap.service';
   styleUrls: ['./transaction-settings.component.css'],
 })
 export class TransactionSettingsComponent implements OnInit {
-  constructor(
-    public _SwapService: SwapService,
-    public _FormBuilder: FormBuilder
-  ) {}
+  constructor(public _SwapService: SwapService) {}
 
-  ngOnInit(): void {
-    console.log(this._SwapService.trnsactionSettingsForm.controls.number_of_targets.value);
-  }
+  ngOnInit(): void {}
 }

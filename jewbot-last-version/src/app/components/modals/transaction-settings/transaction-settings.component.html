@@ -442,15 +442,15 @@
       </div>
 
       <div
-        *ngIf="
-          _SwapService.trnsactionSettingsForm.controls.is_kosher_settings.value
-        "
+        *ngIf="_SwapService.trnsactionSettingsForm.controls.is_kosher_settings"
         id="kosherness_settings"
       >
         <div
           *ngIf="
-            _SwapService.kosherness_settings === 'mixed' ||
-            _SwapService.kosherness_settings === 'custom'
+            _SwapService.trnsactionSettingsForm.controls.kosher_mode.value ===
+              'mixed' ||
+            _SwapService.trnsactionSettingsForm.controls.kosher_mode.value ===
+              'custom'
           "
           class="input-group"
         >
@@ -465,9 +465,10 @@
         <div class="multiple-input-groups multi-switch">
           <div class="input-group w-100">
             <button
-              (click)="_SwapService.changeKoshernessSettings('jewbot')"
+              (click)="_SwapService.changeKoshernessSettings('jew')"
               [ngClass]="
-                _SwapService.kosherness_settings === 'jewbot'
+                _SwapService.trnsactionSettingsForm.controls.kosher_mode
+                  .value === 'jew'
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
@@ -480,7 +481,8 @@
             <button
               (click)="_SwapService.changeKoshernessSettings('mixed')"
               [ngClass]="
-                _SwapService.kosherness_settings === 'mixed'
+                _SwapService.trnsactionSettingsForm.controls.kosher_mode
+                  .value === 'mixed'
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
@@ -493,7 +495,8 @@
             <button
               (click)="_SwapService.changeKoshernessSettings('custom')"
               [ngClass]="
-                _SwapService.kosherness_settings === 'custom'
+                _SwapService.trnsactionSettingsForm.controls.kosher_mode
+                  .value === 'custom'
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
