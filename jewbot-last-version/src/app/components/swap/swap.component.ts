@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SwapService } from 'src/app/shared/swap/swap.service';
 
@@ -11,7 +11,11 @@ import { SwapService } from 'src/app/shared/swap/swap.service';
 export class SwapComponent implements OnInit {
   init_data_object = {};
 
-  constructor(public _Router: Router, public _SwapService: SwapService) {}
+  constructor(
+    public _Router: Router,
+    public _SwapService: SwapService,
+    public _FormBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     var init_data = JSON.parse(
@@ -27,9 +31,10 @@ export class SwapComponent implements OnInit {
       sell_at: 0,
       moonbag: 0,
       time_out: 0,
-      targets: [],
-      targets_percent: [],
-      strainer: [],
+      number_of_targets: 1,
+      targets: this._FormBuilder.array([]),
+      targets_percent: this._FormBuilder.array([]),
+      strainer: this._FormBuilder.array([]),
       kosher_mode: 'jew',
       gas: 0,
       gas_limit: 0,

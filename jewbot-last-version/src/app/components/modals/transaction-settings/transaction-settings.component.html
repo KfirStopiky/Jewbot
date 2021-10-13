@@ -161,16 +161,20 @@
       <div class="label">Targets</div>
 
       <div
-        *ngFor="let newTarget of _SwapService.targets; let i = index"
+        formArrayName="number_of_targets"
+        *ngFor="
+          let newTarget of [].constructor(_SwapService.number_of_targets);
+          let i = index
+        "
         class="multiple-input-groups"
       >
         <div class="input-group has-addon">
-          <input class="form-control" placeholder="0" value="4" />
+          <input [formControlName]="i" class="form-control" placeholder="0" />
           <div class="addon">X</div>
         </div>
 
         <div class="input-group has-addon is-invalid">
-          <input class="form-control" placeholder="0" />
+          <input [formControlName]="i+1" class="form-control" placeholder="0" />
           <div class="addon">%</div>
         </div>
 
@@ -187,7 +191,11 @@
       </div>
 
       <div class="input-group">
-        <button (click)="_SwapService.addTarget()" id="add_target" class="btn">
+        <button
+          (click)="_SwapService.addTarget()"
+          id="add_target"
+          class="btn"
+        >
           Add Target
         </button>
       </div>

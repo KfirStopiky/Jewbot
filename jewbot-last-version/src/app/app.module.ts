@@ -14,8 +14,23 @@ import { TransactionsActiveComponent } from './components/modals/transactions-ac
 import { TransactionCompletedComponent } from './components/modals/transaction-completed/transaction-completed.component';
 
 @NgModule({
-  declarations: [AppComponent, SwapComponent, ScanComponent, HeaderComponent, TransactionSettingsComponent, TokenSelectComponent, HelpComponent, MenuComponent, TransactionsActiveComponent, TransactionCompletedComponent],
-  imports: [BrowserModule, AppRoutingModule,ReactiveFormsModule],
+  declarations: [
+    AppComponent,
+    SwapComponent,
+    ScanComponent,
+    HeaderComponent,
+    TransactionSettingsComponent,
+    TokenSelectComponent,
+    HelpComponent,
+    MenuComponent,
+    TransactionsActiveComponent,
+    TransactionCompletedComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
