@@ -49,6 +49,11 @@ export class SwapService {
       this._FormBuilder.control('')
     );
   }
+  changeKoshernessSettings(name: string) {
+    this.trnsactionSettingsForm.patchValue({
+      kosher_mode: name,
+    });
+  }
   // addTarget() {
   // this.trnsactionSettingsForm.addControl(
   //   'target' + this.number_of_targets,
