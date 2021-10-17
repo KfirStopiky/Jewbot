@@ -159,23 +159,14 @@
       <!-- Targets -->
 
       <div class="label">Targets</div>
-
-      <div
-        formArrayName="number_of_targets"
-        *ngFor="
-          let newTarget of [].constructor(_SwapService.number_of_targets);
-          let i = index
-        "
-        class="multiple-input-groups"
-      >
+      <div class="multiple-input-groups">
         <div class="input-group has-addon">
-          <input [formControlName]="i" class="form-control" placeholder="0" />
+          <input class="form-control" placeholder="0" />
           <div class="addon">X</div>
         </div>
 
         <div class="input-group has-addon is-invalid">
           <input
-            [formControlName]="i + 1"
             class="form-control"
             placeholder="0"
           />
@@ -183,17 +174,13 @@
         </div>
 
         <div class="input-group">
-          <button
-            (click)="_SwapService.removeTarget(i)"
-            class="btn btn-icon btn-remove-target"
-          >
+          <button class="btn btn-icon btn-remove-target">
             <svg class="icon">
               <use xlink:href="#icon_trash" />
             </svg>
           </button>
         </div>
       </div>
-
       <div class="input-group">
         <button (click)="_SwapService.addTarget()" id="add_target" class="btn">
           Add Target
@@ -442,9 +429,7 @@
       </div>
 
       <div
-        *ngIf="
-          _SwapService.trnsactionSettingsForm.controls.is_kosher_settings.value
-        "
+        *ngIf="_SwapService.trnsactionSettingsForm.controls.is_kosher_settings"
         id="kosherness_settings"
       >
         <div

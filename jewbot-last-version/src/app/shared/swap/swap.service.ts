@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class SwapService {
     modal_token_selection: false,
     modal_transaction_active: false,
   };
-  number_of_targets: number = 0;
+  // number_of_targets: number = 0;
 
   constructor(public _FormBuilder: FormBuilder, public _Router: Router) {}
 
@@ -26,9 +26,6 @@ export class SwapService {
     this.modals[propertyName] = !this.modals[propertyName];
   }
   saveTransactionSettings() {
-    this.trnsactionSettingsForm.patchValue({
-      number_of_targets: this.number_of_targets,
-    });
     localStorage.setItem(
       'transactionSettings',
       JSON.stringify(this.trnsactionSettingsForm.value)
@@ -49,20 +46,10 @@ export class SwapService {
       this._FormBuilder.control('')
     );
   }
+
   changeKoshernessSettings(name: string) {
     this.trnsactionSettingsForm.patchValue({
       kosher_mode: name,
     });
   }
-  // addTarget() {
-  // this.trnsactionSettingsForm.addControl(
-  //   'target' + this.number_of_targets,
-  //   []
-  // );
-  // this.number_of_targets += 1;
-  // }
-
-  // removeTarget(i: number) {
-  //   this.number_of_targets.splice(i, 1);
-  // }
 }

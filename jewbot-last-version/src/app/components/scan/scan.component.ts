@@ -14,7 +14,7 @@ export class ScanComponent implements OnInit {
     scanner_columns: false,
     top_performers: false,
   };
-  constructor(public _Router: Router, public _SwapServics: SwapService) {}
+  constructor(public _Router: Router, public _SwapService: SwapService) {}
 
   ngOnInit(): void {}
 }
