@@ -32,39 +32,54 @@ export class SwapComponent implements OnInit {
       moonbag: 0,
       time_out: 0,
       number_of_targets: 1,
-      targets: this._FormBuilder.array([]),
-      targets_percent: this._FormBuilder.array([]),
+      targets_array: this._FormBuilder.array([]),
+      targets: '',
+      targets_precets: '',
       strainer: this._FormBuilder.array([]),
-      kosher_mode: 'jew',
-      gas: 0,
-      gas_limit: 0,
-      fees: 0,
-      total_supply: 0,
-      price: 0,
-      pair: null,
-      MTA: 0,
-      MWA: 0,
-      transfet_limit: 10,
-      tx_transfer_limit: 25,
-      auto_slippage: false,
-      auto_gas: false,
-      is_kosher: false,
-      is_kosher_settings: false,
-      auto_moon_bag: false,
-      auto_time_out: false,
-      is_market_price: false,
-      is_market_price_sell: false,
-      is_stop_loss: false,
-      trailing: false,
-      defender: false,
-      skip: true,
     };
-
     for (var i in init_data) {
       this.init_data_object[i] = new FormControl(init_data[i]);
     }
 
-    this._SwapService.trnsactionSettingsForm =
-      this._SwapService._FormBuilder.group(this.init_data_object);
+    this._SwapService.trnsactionSettingsForm = this._FormBuilder.group(
+      this.init_data_object
+    );
   }
+  // addTargetFormGroup(): FormGroup {
+  //   return this._FormBuilder.group({
+  //     targets: [''],
+  //     targets_percent: [''],
+  //   });
+  // }
+
+  // targets: this._FormBuilder.array([]),
+  // targets_percent: this._FormBuilder.array([]),
+  //   this._FormBuilder.group({
+  //     targets: new FormControl(''),
+  //     targets_percent: new FormControl(''),
+  //   }),
+  // ]),
+  // kosher_mode: 'jew',
+  // gas: 0,
+  // gas_limit: 0,
+  // fees: 0,
+  // total_supply: 0,
+  // price: 0,
+  // pair: null,
+  // MTA: 0,
+  // MWA: 0,
+  // transfet_limit: 10,
+  // tx_transfer_limit: 25,
+  // auto_slippage: false,
+  // auto_gas: false,
+  // is_kosher: false,
+  // is_kosher_settings: false,
+  // auto_moon_bag: false,
+  // auto_time_out: false,
+  // is_market_price: false,
+  // is_market_price_sell: false,
+  // is_stop_loss: false,
+  // trailing: false,
+  // defender: false,
+  // skip: true,
 }

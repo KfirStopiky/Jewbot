@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -18,19 +18,36 @@ export class SwapService {
     modal_token_selection: false,
     modal_transaction_active: false,
   };
-  number_of_targets: number = 0;
-  getTargets() {
-    return this.trnsactionSettingsForm.get('targets') as FormArray;
-  }
+  // number_of_targets: number = 0;
+
   constructor(public _FormBuilder: FormBuilder, public _Router: Router) {}
+
+  addTargetControl(): void {
+    (<FormArray>(
+      this.trnsactionSettingsForm.controls.targets_array.value.controls
+    )).push(new FormControl('0'));
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   toggleModal(propertyName: string) {
     this.modals[propertyName] = !this.modals[propertyName];
   }
   saveTransactionSettings() {
-    this.trnsactionSettingsForm.patchValue({
-      number_of_targets: this.number_of_targets,
-    });
+    // this.trnsactionSettingsForm.patchValue({
+    //   number_of_targets: this.number_of_targets,
+    // });
     localStorage.setItem(
       'transactionSettings',
       JSON.stringify(this.trnsactionSettingsForm.value)
@@ -39,30 +56,16 @@ export class SwapService {
     this.modals.modal_transactions_settings = false;
   }
   toggleBtn(propertyName: any) {
-    console.log(this.trnsactionSettingsForm.controls[propertyName].value);
     this.trnsactionSettingsForm.patchValue({
       [propertyName]: !this.trnsactionSettingsForm.controls[propertyName].value,
     });
-    console.log(this.trnsactionSettingsForm.controls[propertyName].value);
   }
 
-  addTarget() {
-    (this.trnsactionSettingsForm.controls.targets as FormArray).push(
-      this._FormBuilder.control('')
-    );
-  }
-  // addTarget() {
-  // this.trnsactionSettingsForm.addControl(
-  //   'target' + this.number_of_targets,
-  //   []
-  // );
-  // this.number_of_targets += 1;
-  // }
 
-  // removeTarget(i: number) {
-  //   this.number_of_targets.splice(i, 1);
-  // }
+
   changeKoshernessSettings(name: string) {
-    this.trnsactionSettingsForm.controls.kosher_mode.value = name;
+    this.trnsactionSettingsForm.patchValue({
+      kosher_mode: name,
+    });
   }
 }
