@@ -447,7 +447,15 @@
         "
         id="kosherness_settings"
       >
-        <div class="input-group">
+        <div
+          *ngIf="
+            _SwapService.trnsactionSettingsForm.controls.kosher_mode.value ===
+              'mixed' ||
+            _SwapService.trnsactionSettingsForm.controls.kosher_mode.value ===
+              'custom'
+          "
+          class="input-group"
+        >
           <textarea
             id="kosherness_exceptions"
             class="form-control hidden"
