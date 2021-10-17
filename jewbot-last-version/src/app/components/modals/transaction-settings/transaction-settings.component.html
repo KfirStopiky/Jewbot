@@ -174,7 +174,11 @@
         </div>
 
         <div class="input-group has-addon is-invalid">
-          <input [formControlName]="i+1" class="form-control" placeholder="0" />
+          <input
+            [formControlName]="i + 1"
+            class="form-control"
+            placeholder="0"
+          />
           <div class="addon">%</div>
         </div>
 
@@ -191,11 +195,7 @@
       </div>
 
       <div class="input-group">
-        <button
-          (click)="_SwapService.addTarget()"
-          id="add_target"
-          class="btn"
-        >
+        <button (click)="_SwapService.addTarget()" id="add_target" class="btn">
           Add Target
         </button>
       </div>
@@ -458,15 +458,45 @@
 
         <div class="multiple-input-groups multi-switch">
           <div class="input-group w-100">
-            <button class="btn btn-toggle active">Jewbot</button>
+            <button
+              (click)="_SwapService.changeKoshernessSettings('jew')"
+              [ngClass]="
+                _SwapService.trnsactionSettingsForm.controls.kosher_mode
+                  .value === 'jew'
+                  ? 'btn btn-toggle active'
+                  : 'btn btn-toggle '
+              "
+            >
+              Jewbot
+            </button>
           </div>
 
           <div class="input-group w-100">
-            <button class="btn btn-toggle">Mixed</button>
+            <button
+              (click)="_SwapService.changeKoshernessSettings('mixed')"
+              [ngClass]="
+                _SwapService.trnsactionSettingsForm.controls.kosher_mode
+                  .value === 'jew'
+                  ? 'btn btn-toggle active'
+                  : 'btn btn-toggle '
+              "
+            >
+              mixed
+            </button>
           </div>
 
           <div class="input-group w-100">
-            <button class="btn btn-toggle">Custom</button>
+            <button
+              (click)="_SwapService.changeKoshernessSettings('custome')"
+              [ngClass]="
+                _SwapService.trnsactionSettingsForm.controls.kosher_mode
+                  .value === 'jew'
+                  ? 'btn btn-toggle active'
+                  : 'btn btn-toggle '
+              "
+            >
+              custome
+            </button>
           </div>
         </div>
       </div>
