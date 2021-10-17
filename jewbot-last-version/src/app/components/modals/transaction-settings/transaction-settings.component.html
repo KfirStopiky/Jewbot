@@ -476,7 +476,7 @@
               (click)="_SwapService.changeKoshernessSettings('mixed')"
               [ngClass]="
                 _SwapService.trnsactionSettingsForm.controls.kosher_mode
-                  .value === 'jew'
+                  .value === 'mixed'
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
@@ -487,10 +487,10 @@
 
           <div class="input-group w-100">
             <button
-              (click)="_SwapService.changeKoshernessSettings('custome')"
+              (click)="_SwapService.changeKoshernessSettings('custom')"
               [ngClass]="
                 _SwapService.trnsactionSettingsForm.controls.kosher_mode
-                  .value === 'jew'
+                  .value === 'custom'
                   ? 'btn btn-toggle active'
                   : 'btn btn-toggle '
               "
