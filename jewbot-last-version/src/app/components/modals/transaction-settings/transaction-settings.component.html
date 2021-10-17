@@ -424,7 +424,9 @@
       </div>
 
       <div
-        *ngIf="_SwapService.trnsactionSettingsForm.controls.is_kosher_settings"
+        *ngIf="
+          _SwapService.trnsactionSettingsForm.controls.is_kosher_settings.value
+        "
         id="kosherness_settings"
       >
         <div
