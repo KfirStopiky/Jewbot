@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SwapService } from 'src/app/shared/swap/swap.service';
+import { SwapComponent } from '../swap/swap.component';
 
 @Component({
   selector: 'app-scan',
@@ -12,7 +14,7 @@ export class ScanComponent implements OnInit {
     scanner_columns: false,
     top_performers: false,
   };
-  constructor(public _Router:Router) {}
+  constructor(public _Router: Router, public _SwapServics: SwapService) {}
 
   ngOnInit(): void {}
 }

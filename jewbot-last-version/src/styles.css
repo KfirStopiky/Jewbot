@@ -229,6 +229,7 @@ footer .alien {
 
 header {
   position: relative;
+  z-index: 999;
 }
 
 header > .container {
@@ -533,6 +534,10 @@ textarea.form-control {
   background-color: var(--color-1);
   max-width: 480px;
   width: 100%;
+}
+
+app-header{
+ z-index: 999;
 }
 
 /* Modal header */
