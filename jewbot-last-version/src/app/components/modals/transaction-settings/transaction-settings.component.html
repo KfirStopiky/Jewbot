@@ -159,22 +159,14 @@
       <!-- Targets -->
 
       <div class="label">Targets</div>
-      <div
-        *ngFor="
-          let newTarget of _SwapService.trnsactionSettingsForm.controls
-            .targets_array.value.controls;
-          let i = index
-        "
-        formArrayName="targets_array"
-        class="multiple-input-groups"
-      >
+      <div class="multiple-input-groups">
         <div class="input-group has-addon">
-          <input [formControlName]="i" class="form-control" placeholder="0" />
+          <input class="form-control" placeholder="0" />
           <div class="addon">X</div>
         </div>
 
         <div class="input-group has-addon is-invalid">
-          <input [formControlName]="i" class="form-control" placeholder="0" />
+          <input class="form-control" placeholder="0" />
           <div class="addon">%</div>
         </div>
 
@@ -187,13 +179,7 @@
         </div>
       </div>
       <div class="input-group">
-        <button
-          (click)="_SwapService.addTargetControl()"
-          id="add_target"
-          class="btn"
-        >
-          Add Target
-        </button>
+        <button id="add_target" class="btn">Add Target</button>
       </div>
 
       <!-- Stop loss -->

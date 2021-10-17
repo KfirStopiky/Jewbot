@@ -22,19 +22,10 @@ export class SwapService {
 
   constructor(public _FormBuilder: FormBuilder, public _Router: Router) {}
 
-  addTargetControl(): void {
-    (<FormArray>(
-      this.trnsactionSettingsForm.controls.targets_array.value.controls
-    )).push(new FormControl('0'));
-  }
-
   toggleModal(propertyName: string) {
     this.modals[propertyName] = !this.modals[propertyName];
   }
   saveTransactionSettings() {
-    // this.trnsactionSettingsForm.patchValue({
-    //   number_of_targets: this.number_of_targets,
-    // });
     localStorage.setItem(
       'transactionSettings',
       JSON.stringify(this.trnsactionSettingsForm.value)
