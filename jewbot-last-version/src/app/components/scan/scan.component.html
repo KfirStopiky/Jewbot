@@ -234,7 +234,62 @@
       />
     </symbol>
   </svg>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <button
+            (click)="_Router.navigateByUrl('')"
+            id="view_swap"
+            class="btn text-bold active"
+          >
+            SWAP
+          </button>
+        </div>
 
+        <div class="col">
+          <button
+            (click)="_Router.navigateByUrl('scan')"
+            id="view_scan"
+            class="btn text-bold"
+          >
+            SCAN
+          </button>
+        </div>
+
+        <div class="col">
+          <button id="view_shop" class="btn text-bold">SHOP</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button id="connect_wallet_header" class="btn text-bold text-white">
+            CONNECT WALLET
+          </button>
+
+          <button id="disconnect_wallet_header" class="btn hidden">
+            <span class="text-bold text-white">DISCONNECT</span>
+
+            <span>0x1337&hellip;</span>
+          </button>
+        </div>
+
+        <div class="col">
+          <button
+            (click)="_SwapServicse.toggleModal('modal_menu')"
+            id="toggle_menu"
+            class="btn btn-icon"
+            data-toggle="modal_menu"
+          >
+            <svg class="icon">
+              <use xlink:href="#icon_three_dots" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
   <main id="scan">
     <div class="container">
       <div id="top" class="row row-1">
