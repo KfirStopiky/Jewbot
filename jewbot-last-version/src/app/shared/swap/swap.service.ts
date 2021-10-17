@@ -28,19 +28,6 @@ export class SwapService {
     )).push(new FormControl('0'));
   }
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
   toggleModal(propertyName: string) {
     this.modals[propertyName] = !this.modals[propertyName];
   }
@@ -60,8 +47,6 @@ export class SwapService {
       [propertyName]: !this.trnsactionSettingsForm.controls[propertyName].value,
     });
   }
-
-
 
   changeKoshernessSettings(name: string) {
     this.trnsactionSettingsForm.patchValue({
