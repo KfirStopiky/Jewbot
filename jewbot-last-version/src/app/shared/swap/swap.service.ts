@@ -9,6 +9,7 @@ export class SwapService {
   object: any;
   init_data: any;
   trnsactionSettingsForm: FormGroup;
+  targets_form: FormGroup;
   modals = {
     modal_transactions_settings: false,
     modal_help: false,
