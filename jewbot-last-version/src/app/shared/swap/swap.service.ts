@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 export class SwapService {
   object: any;
   init_data: any;
+  serviceTestForm: FormGroup;
   trnsactionSettingsForm: FormGroup;
   modals = {
     modal_transactions_settings: false,
@@ -44,4 +45,11 @@ export class SwapService {
       kosher_mode: name,
     });
   }
+  addTarget = () => {
+    const targetsArray = <FormArray>(
+      this.trnsactionSettingsForm.get('targets_array')['controls']
+    );
+    targetsArray.push(this._FormBuilder.group({ target: ['4'] }));
+    console.log(targetsArray);
+  };
 }
