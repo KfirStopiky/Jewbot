@@ -26,12 +26,7 @@ import { TransactionCompletedComponent } from './components/modals/transaction-c
     TransactionsActiveComponent,
     TransactionCompletedComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

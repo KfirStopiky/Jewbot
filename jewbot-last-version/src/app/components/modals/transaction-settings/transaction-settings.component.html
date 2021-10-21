@@ -160,15 +160,46 @@
 
       <div class="label">Targets</div>
       <div
-        formGroupName="targets_array"
-        *ngFor="
-          let target of _SwapService.trnsactionSettingsForm.controls
-            .targets_array.controls
-        "
+        class="multiple-input-groups"
+        formArrayName="targets_array"
+        *ngFor="let t of _SwapService.targets.controls; let i = index"
+      >
+        <div class="input-group has-addon" [formGroupName]="i">
+          <div class="input-group has-addon">
+            <input
+              formControlName="target"
+              id="{{ 'name' + i }}"
+              class="form-control"
+              placeholder="0"
+            />
+            <div class="addon">X</div>
+          </div>
+          <div class="input-group has-addon">
+            <input
+              formControlName="target_precent"
+              id="{{ 'target' + i }}"
+              class="form-control"
+              placeholder="0"
+            />
+            <div class="addon">%</div>
+          </div>
+          <div class="input-group">
+            <button class="btn btn-icon btn-remove-target">
+              <svg class="icon">
+                <use xlink:href="#icon_trash" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button class="btn" (click)="_SwapService.addTarget()">add</button>
+      <!-- <div
+        *ngFor="let t of _SwapService.targets.controls"
         class="multiple-input-groups"
       >
         <div class="input-group has-addon">
           <input
+            id="{{ 'target' + i }}"
             formControlName="target"
             class="form-control"
             placeholder="0"
@@ -177,7 +208,12 @@
         </div>
 
         <div class="input-group has-addon is-invalid">
-          <input class="form-control" placeholder="0" />
+          <input
+            id="{{ 'target_precent' + i }}"
+            formControlName="target_precent"
+            class="form-control"
+            placeholder="0"
+          />
           <div class="addon">%</div>
         </div>
 
@@ -193,7 +229,7 @@
         <button (click)="_SwapService.addTarget()" id="add_target" class="btn">
           Add Target
         </button>
-      </div>
+      </div> -->
 
       <!-- Stop loss -->
 

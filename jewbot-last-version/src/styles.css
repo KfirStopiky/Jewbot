@@ -1198,7 +1198,7 @@ textarea.form-control {
 
 @media (min-width: 720px) {
   #rss {
-    /* max-width: 1080px; */
+    max-width: 1080px;
   }
 
   /* Reset <table> flexed elements */

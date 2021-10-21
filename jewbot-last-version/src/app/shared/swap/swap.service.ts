@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 export class SwapService {
   object: any;
   init_data: any;
-  serviceTestForm: FormGroup;
   trnsactionSettingsForm: FormGroup;
+  targets_form: FormGroup;
   modals = {
     modal_transactions_settings: false,
     modal_help: false,
@@ -35,6 +35,8 @@ export class SwapService {
     this.modals.modal_transactions_settings = false;
   }
   toggleBtn(propertyName: any) {
+    console.log(<FormArray>this.trnsactionSettingsForm.get('targets_array'));
+
     this.trnsactionSettingsForm.patchValue({
       [propertyName]: !this.trnsactionSettingsForm.controls[propertyName].value,
     });
@@ -45,11 +47,16 @@ export class SwapService {
       kosher_mode: name,
     });
   }
-  addTarget = () => {
-    const targetsArray = <FormArray>(
-      this.trnsactionSettingsForm.get('targets_array')['controls']
-    );
-    targetsArray.push(this._FormBuilder.group({ target: ['4'] }));
-    console.log(targetsArray);
+  createTarget = () => {
+    return this._FormBuilder.group({
+      target: [''],
+      target_precent: [''],
+    });
   };
+  get targets(): FormArray {
+    return <FormArray>this.trnsactionSettingsForm.get('targets_array');
+  }
+  addTarget() {
+    this.targets.push(this.createTarget());
+  }
 }

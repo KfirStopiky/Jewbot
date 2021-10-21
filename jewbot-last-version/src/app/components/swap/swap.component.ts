@@ -11,7 +11,8 @@ import { SwapService } from 'src/app/shared/swap/swap.service';
 export class SwapComponent implements OnInit {
   init_data_object = {};
   init_transactions_settings_form: FormGroup;
-  testForm: FormGroup;
+  targets_form: FormGroup;
+
   constructor(
     public _Router: Router,
     public _SwapService: SwapService,
@@ -95,12 +96,13 @@ export class SwapComponent implements OnInit {
       trailing: new FormControl(init_data.trailing),
       defender: new FormControl(init_data.defender),
       skip: new FormControl(init_data.skip),
-      targets_array: this._FormBuilder.array([]),
+      targets_array:this._FormBuilder.array([this._SwapService.createTarget()]),
       strainer: this._FormBuilder.array([]),
     });
+
     this._SwapService.trnsactionSettingsForm =
       this.init_transactions_settings_form;
-
+    this._SwapService.targets_form = this.targets_form;
     // for (var i in init_data) {
     //   this.init_data_object[i] = new FormControl(init_data[i]);
     // }
@@ -108,6 +110,5 @@ export class SwapComponent implements OnInit {
     // this._SwapService.trnsactionSettingsForm = this._FormBuilder.group(
     //   this.init_data_object
     // );
-    this._SwapService.serviceTestForm = this.testForm;
   }
 }

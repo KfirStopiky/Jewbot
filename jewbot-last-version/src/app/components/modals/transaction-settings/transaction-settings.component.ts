@@ -8,10 +8,7 @@ import { SwapService } from 'src/app/shared/swap/swap.service';
   styleUrls: ['./transaction-settings.component.css'],
 })
 export class TransactionSettingsComponent implements OnInit {
-
   constructor(public _SwapService: SwapService) {}
 
-  ngOnInit(): void {
-    console.log(this._SwapService.trnsactionSettingsForm.get('targets_array')['controls']);
-  }
+  ngOnInit(): void {}
 }
